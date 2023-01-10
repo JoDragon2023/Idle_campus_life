@@ -112,16 +112,6 @@ public partial class Role : IStateMachineObj
     private void GetAllRandom(bool isAll = true)
     {
         var randomDic = new Dictionary<int, Vector3>();
-        //开始随机位置点。
-        // if (isAll)
-        // {
-        //     randomDic = ScenePoint.Instance.GetIdleAndEvenRandom();
-        // }
-        // else
-        // {
-        //     randomDic = ScenePoint.Instance.GetIdleRandom();
-        // }
-        
         randomDic = ScenePoint.Instance.GetIdleAndEvenRandom();
 
         var randomKey = 0;

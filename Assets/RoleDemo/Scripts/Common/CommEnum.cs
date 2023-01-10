@@ -301,6 +301,33 @@ public enum ToAnimatorCondition
     CurrState
 }
 
+
+public enum BedAnimState
+{
+    BedOne = 1,
+    BedTwo = 2,
+    BedThree = 3,
+}
+
+/// <summary>
+/// 床的动画名字
+/// </summary>
+public enum BedAnimatorName
+{
+    BedOne,
+    BedTwo,
+    BedThree,
+}
+
+public enum BedAnimatorCondition
+{
+    CurrState,
+    ToBedOne,
+    ToBedTwo,
+    ToBedThree,
+}
+
+
 /// <summary>
 /// 角色动画状态名称
 /// </summary>
@@ -394,23 +421,6 @@ public enum RoleAniState
     BatheTwo = 16,
     BatheThree = 17,
     BatheFour = 18,
-}
-
-public enum Event1SitRandom
-{
-    None,
-    Path1,
-    Path2,
-    Path3
-}
-
-public enum Event2AttendRandom
-{
-    None,
-    Path1,
-    Path2,
-    Path3,
-    Path4
 }
 
 public enum EventRandomPath

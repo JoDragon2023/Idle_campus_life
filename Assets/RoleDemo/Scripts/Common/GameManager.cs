@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject targetRoot;
     [HideInInspector]
     public DoorEvent[] doorEventAry;
-    
+   
+    private BedAnim[] bedAniAry;
     public Action<DoorAnim, Collider> DoorRaycastEvent;
 
     private void Awake()
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         }
 
         doorEventAry =  Resources.FindObjectsOfTypeAll<DoorEvent>();
+        bedAniAry =  Resources.FindObjectsOfTypeAll<BedAnim>();
     }
 
     void Start()
@@ -69,4 +71,22 @@ public class GameManager : MonoBehaviour
         UpdateAct?.Invoke(deltaTime);
     }
 
+    /// <summary>
+    /// 获取床播放动画对象
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public BedAnim GetBedAnim(EventRandomPath path)
+    {
+        for (var i = 0; i < bedAniAry.Length; i++)
+        {
+            if (bedAniAry[i].eventRandomPath == path)
+            {
+                return bedAniAry[i];
+            }
+        }
+
+        return null;
+    }
+    
 }

@@ -1030,7 +1030,7 @@ public partial class Role
     private int sleepRotate = 180;
     private float sleepTime = 1f;
     private float nextSleepTime = 10f;
-
+    private BedAnim bedAnim;
 
     public void EnterSleepAct()
     {
@@ -1056,6 +1056,9 @@ public partial class Role
                 return;
             }
         }
+
+        if (bedAnim != null)
+            bedAnim.UpdateBedAnim();
         
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.SleepOne.ToString()))
@@ -1068,6 +1071,9 @@ public partial class Role
                     isSleepOne = true;
                     animator.SetBool(ToAnimatorCondition.ToSleepOne.ToString(), false);
                     animator.SetBool(ToAnimatorCondition.ToSleepTwo.ToString(), true);
+                    
+                    if (bedAnim != null)
+                        bedAnim.PlayAnim(BedAnimatorName.BedTwo);
                 }
             }
         }
@@ -1097,6 +1103,9 @@ public partial class Role
                     isUpdateSleep = false;
                     durTime = 0;
                     animator.SetBool(ToAnimatorCondition.ToSleepThree.ToString(), true);
+                    
+                    if (bedAnim != null)
+                        bedAnim.PlayAnim(BedAnimatorName.BedThree);
                 }
             }
         }
@@ -1129,22 +1138,22 @@ public partial class Role
         SetAIComponent(false);
 
         sleepRotate = 180;
-        if (currRandomEventAct == RandomEventAct.Event3Sleep)
-            sleepRotate = 90;
+        // if (currRandomEventAct == RandomEventAct.Event3Sleep)
+        //     sleepRotate = 90;
 
         switch (curRandomPath)
         {
             case EventRandomPath.Path1:
-                sleepTime = 0.5f;
+                sleepTime = 2f;
                 break;
             case EventRandomPath.Path2:
-                sleepTime = 1f;
+                sleepTime = 2f;
                 break;
             case EventRandomPath.Path3:
-                sleepTime = 2f;
+                sleepTime = 3f;
                 break;
             case EventRandomPath.Path4:
-                sleepTime = 2f;
+                sleepTime = 3f;
                 break;
         }
 
@@ -1156,6 +1165,9 @@ public partial class Role
             {
                 animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), false);
                 animator.SetBool(ToAnimatorCondition.ToSleepOne.ToString(), true);
+                
+                if (bedAnim != null)
+                    bedAnim.PlayAnim(BedAnimatorName.BedOne);
             };
         };
     }
@@ -1189,10 +1201,12 @@ public partial class Role
     {
        GetRolePath(5);
        if (curRandomPath == EventRandomPath.None) return;
+
        
        Vector3[] randomArry = null;
         if (currRandomEventAct == RandomEventAct.Event3Sleep)
         {
+            bedAnim = GameManager.Instance.GetBedAnim(curRandomPath);
             randomArry = ScenePath.Instance.GeEvent3SleepPath(curRandomPath);
         }
         else if (currRandomEventAct == RandomEventAct.Event5Sleep)
@@ -1426,7 +1440,7 @@ public partial class Role
     private int switchDoorRotate = 180;
     private bool isSwitchDoorLeave = false;
     private bool isSwitchDoorPath = false;
-    
+    private float switchDoorTime = 2.5f;
     public void EnterSwitchDoorAct()
     {
         isSwitchDoorLeave = false;
@@ -1486,7 +1500,7 @@ public partial class Role
             switchDoorPath = ScenePath.Instance.GetEvent5SwitchDoorPath();
         }
 
-        go.transform.DOPath(switchDoorPath, 1f, PathType.CatmullRom).SetEase(Ease.Linear)
+        go.transform.DOPath(switchDoorPath, switchDoorTime, PathType.CatmullRom).SetEase(Ease.Linear)
             .SetLookAt(0).onComplete = () =>
         {
             go.transform.DORotate(new Vector3(0, switchDoorRotate, 0), 0.2f, RotateMode.Fast).onComplete = () =>
@@ -1508,7 +1522,7 @@ public partial class Role
             leavePoint = ScenePoint.Instance.GetRandomEventActPoint(RandomEventAct.Event5SwitchDoor);
         }
 
-        go.transform.DOPath(ScenePath.Instance.GetBackPath(switchDoorPath, leavePoint), 1f, PathType.CatmullRom)
+        go.transform.DOPath(ScenePath.Instance.GetBackPath(switchDoorPath, leavePoint), switchDoorTime, PathType.CatmullRom)
             .SetEase(Ease.Linear)
             .SetLookAt(0).onComplete = () =>
         {
