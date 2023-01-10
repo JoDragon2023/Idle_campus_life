@@ -478,11 +478,11 @@ public partial class Role
     {
         if (curRandomPath == EventRandomPath.None) return;
         
-        standTime = 1.5f;
+        standTime = 2.5f;
         standRotate = 90;
         if (curRandomPath == EventRandomPath.Path2)
         {
-            standTime = 2f;
+            standTime = 3f;
             standRotate = 180;
         }
 
@@ -1233,7 +1233,8 @@ public partial class Role
     private float attendClassTime = 3;
     private float nextAttendClassTime = 5;
     private int attendClassRotate = 0;
-
+    private string studyIdleStr;
+    
     public void EnterAttendClassAct()
     {
         durTime = 0;
@@ -1266,7 +1267,7 @@ public partial class Role
             {
                 isEventAttendClass = true;
                 animator.SetBool(ToAnimatorCondition.ToSitdown.ToString(), false);
-                animator.SetBool(ToAnimatorCondition.ToStudyIdle.ToString(), true);
+                animator.SetBool(studyIdleStr, true);
             }
         }
 
@@ -1279,7 +1280,12 @@ public partial class Role
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.StudyIdle);
         }
-
+        
+        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.StudyCourseIdle.ToString()))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.StudyIdle);
+        }
+        
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Study.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Study);
@@ -1287,7 +1293,7 @@ public partial class Role
             {
                 isStudy = true;
                 animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), false);
-                animator.SetBool(ToAnimatorCondition.ToStudyIdle.ToString(), true);
+                animator.SetBool(studyIdleStr, true);
             }
         }
 
@@ -1301,7 +1307,7 @@ public partial class Role
                     isEventAttendClass = false;
                     isEventAttendClassIdle = true;
                     durTime = 0;
-                    animator.SetBool(ToAnimatorCondition.ToStudyIdle.ToString(), false);
+                    animator.SetBool(studyIdleStr, false);
                     animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), true);
                 }
             }
@@ -1327,9 +1333,11 @@ public partial class Role
     {
         if (curRandomPath == EventRandomPath.None) return;;
 
+        studyIdleStr = ToAnimatorCondition.ToStudyCourseIdle.ToString();
         attendClassRotate = 0;
         if (currRandomEventAct == RandomEventAct.Event2AttendClass)
         {
+            studyIdleStr = ToAnimatorCondition.ToStudyIdle.ToString();
             attendClassRotate = 90;
         }
         
@@ -1349,7 +1357,7 @@ public partial class Role
 
     private void leaveAttendClass()
     {
-        animator.SetBool(ToAnimatorCondition.ToStudyIdle.ToString(), false);
+        animator.SetBool(studyIdleStr, false);
         animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
         var leavePoint = ScenePoint.Instance.GetRandomEventActPoint(RandomEventAct.Event2AttendClass);
         if (currRandomEventAct == RandomEventAct.Event4AttendClass)

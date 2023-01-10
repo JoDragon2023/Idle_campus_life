@@ -344,6 +344,7 @@ public enum RoleAnimatorName
     ToiletThree,
     Sitdown,
     StudyIdle,
+    StudyCourseIdle,
     Study,
     Drink,
     Stand,
