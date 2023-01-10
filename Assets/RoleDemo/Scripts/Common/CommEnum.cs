@@ -288,6 +288,7 @@ public enum ToAnimatorCondition
     ToToilet_GetUp,
     ToSitdown,
     ToStudyIdle,
+    ToStudyCourseIdle,
     ToStudy,
     ToDrink,
     ToSwitchDoor,

@@ -1,14 +1,11 @@
 fileFormatVersion: 2
-guid: 560348586e0219544ae05a055d358d97
+guid: 06ae550fe3c1a1e4f99219a2bcfee977
 ModelImporter:
   serializedVersion: 20300
-  internalIDToNameTable:
-  - first:
-      74: 7618955587845736051
-    second: Study
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
-    materialImportMode: 1
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -35,9 +32,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Study
-      takeName: Study
-      internalID: 0
+      name: Sitdown_standby
+      takeName: Sitdown_standby
+      internalID: 3173997854076457002
       firstFrame: 0
       lastFrame: 40
       wrapMode: 0
@@ -127,8 +124,8 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
-  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
-  remapMaterialsIfMaterialImportModeIsNone: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
