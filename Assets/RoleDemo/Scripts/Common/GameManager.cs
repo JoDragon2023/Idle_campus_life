@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public DoorEvent[] doorEventAry;
    
     private BedAnim[] bedAniAry;
+    private ToiletDoorAnim[] toiletDoorAnim;
     public Action<DoorAnim, Collider> DoorRaycastEvent;
 
     private void Awake()
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
 
         doorEventAry =  Resources.FindObjectsOfTypeAll<DoorEvent>();
         bedAniAry =  Resources.FindObjectsOfTypeAll<BedAnim>();
+        toiletDoorAnim =  Resources.FindObjectsOfTypeAll<ToiletDoorAnim>();
     }
 
     void Start()
@@ -86,6 +88,24 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        return null;
+    }
+    
+    /// <summary>
+    /// 获取厕所门 动画对象
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public ToiletDoorAnim GetToiletDoorAnim(RandomEvent randomEvent, EventRandomPath path)
+    {
+        int len = toiletDoorAnim.Length;
+        for (var i = 0; i < len; i++)
+        {
+            if (toiletDoorAnim[i].doorAnimType == path && toiletDoorAnim[i].randomEvent == randomEvent)
+            {
+                return toiletDoorAnim[i];
+            }
+        }
         return null;
     }
     

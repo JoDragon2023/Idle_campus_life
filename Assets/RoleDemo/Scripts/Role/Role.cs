@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 using Pathfinding.RVO;
@@ -96,6 +97,15 @@ public partial class Role : BaseObj
             aiDestination.enabled = isEnabled;
         }
     }
+
+    private void SetCharacterController(bool isEnabled)
+    { 
+        if (characterController != null)
+        {
+            characterController.enabled = isEnabled;
+        }
+    }
+ 
     public void SetTargetPos(Vector3 pos)
     {
         target.transform.position = pos;

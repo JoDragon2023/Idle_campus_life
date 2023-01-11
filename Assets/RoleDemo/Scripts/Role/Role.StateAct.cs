@@ -77,6 +77,10 @@ public partial class Role
     private Vector3 currRandomTarget;
     private bool isRunUpdate = false;
     private float distance;
+    private float runDistance;
+    private bool isPenetrate = false;
+    private float penetrateTime = 0.3f;
+    
     //行走动画条件
     private string runCondition;
     
@@ -84,6 +88,7 @@ public partial class Role
     public void EnterRun()
     {
         isRunUpdate = true;
+        durTime = 0;
         RunPath();
         GetRunAnimation();
         animator.SetBool(runCondition, true);
@@ -157,7 +162,7 @@ public partial class Role
     
     private void GetRunAnimation()
     {
-        var index = Random.Range(1, 4);
+        var index = Random.Range(2, 4);
         var toAnimatorCondition = (ToAnimatorCondition)index;
         runCondition = toAnimatorCondition.ToString();
     }
@@ -173,11 +178,36 @@ public partial class Role
             if (go != null && target != null)
             {
                 distance = (go.transform.position - target.transform.position).magnitude;
+
+                if (distance == runDistance)
+                {
+                    isPenetrate = true;
+                }
+                else
+                {
+                    isPenetrate = false;
+                    durTime = 0;
+                }
+                
+                runDistance = distance;
+               // Debug.Log(" name   "+ go.name  +"   distance  " + distance);
                 if (distance < 0.5f)
                 {
                     isRunUpdate = false;
                     RunTranslateState();
                 }
+            }
+        }
+        
+        if (isPenetrate)
+        {
+            durTime += deltaTime;
+            if (durTime > penetrateTime)
+            {
+                isPenetrate = false;
+                durTime = 0;
+                SetCharacterController(false);
+                go.transform.DOScale(Vector3.one, 1f).onComplete = () => {SetCharacterController(true);};
             }
         }
     }
@@ -636,7 +666,8 @@ public partial class Role
     private bool isToiletThree = false;
     private Vector3[] toiletPath;
     private int rotate = 180;
-
+    private ToiletDoorAnim toiletDoorAnim;
+    
     public void EnterToiletAct()
     {
         isToiletOne = false;
@@ -684,6 +715,8 @@ public partial class Role
                     isToiletTwo = true;
                     animator.SetBool(ToAnimatorCondition.ToToilet.ToString(), false);
                     animator.SetBool(ToAnimatorCondition.ToToilet_GetUp.ToString(), true);
+                    if (toiletDoorAnim != null)
+                        toiletDoorAnim.OpenAnim(true);
                 }
             }
         }
@@ -698,6 +731,9 @@ public partial class Role
                     isToiletThree = true;
                     animator.SetBool(ToAnimatorCondition.ToToilet_GetUp.ToString(), false);
                     animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
+                    if (toiletDoorAnim != null)
+                        toiletDoorAnim.CloseAnim(true);
+                    
                     leaveToilet();
                 }
             }
@@ -739,6 +775,8 @@ public partial class Role
     {
         GetRolePath(5);
         if (curRandomPath == EventRandomPath.None) return;
+
+        toiletDoorAnim = GameManager.Instance.GetToiletDoorAnim(currRandomEvent, curRandomPath);
         SetAIComponent(false);
         var randomAry = ScenePath.Instance.GetEvent8ToiletPath(curRandomPath);
         if (currRandomEventAct == RandomEventAct.Event6Toilet)
@@ -757,6 +795,11 @@ public partial class Role
             .SetLookAt(0).onComplete = () =>
         {
             animator.SetBool(ToAnimatorCondition.ToOpenDoor_Toilet.ToString(), true);
+            
+            if (toiletDoorAnim != null)
+            {
+                toiletDoorAnim.OpenAnim();
+            }
         };
     }
 
@@ -776,6 +819,9 @@ public partial class Role
             .SetEase(Ease.Linear)
             .SetLookAt(0).onComplete = () =>
         {
+            if (toiletDoorAnim != null)
+                toiletDoorAnim.CloseAnim();
+            
             go.transform.DORotate(new Vector3(0, rotate, 0), 0.2f, RotateMode.Fast).onComplete = () =>
             {
                 animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), false);

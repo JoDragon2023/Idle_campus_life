@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class TestRotest : MonoBehaviour
+public class ToiletDoorAnim : MonoBehaviour
 {
     /// <summary>
     /// 事件类型
@@ -25,8 +26,6 @@ public class TestRotest : MonoBehaviour
     public void OpenAnim(bool isDelay = false)
     {
         if (isOpen) return;
-
-        Debug.Log(" OpenAnim   ");
         openDelayTiem = 1f;
         if (isDelay)
             openDelayTiem = 2f;
@@ -53,8 +52,6 @@ public class TestRotest : MonoBehaviour
     {
         if (!isOpen) return;
         
-        Debug.Log(" CloseAnim   ");
-        
         if (isDelay)
             StartCoroutine(PlayCloseAnim());
         else
@@ -62,20 +59,6 @@ public class TestRotest : MonoBehaviour
             toiletDoorLeft.DOLocalRotate(Vector3.zero, 0.2f);
             toiletDoorRight.DOLocalRotate(Vector3.zero, 0.2f);
         }
-        
         isOpen = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            StartCoroutine(PlayOpenAnim());
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
-            StartCoroutine(PlayCloseAnim());
-        }
     }
 }
