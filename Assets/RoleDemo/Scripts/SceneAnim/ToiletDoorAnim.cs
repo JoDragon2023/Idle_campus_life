@@ -26,9 +26,9 @@ public class ToiletDoorAnim : MonoBehaviour
     public void OpenAnim(bool isDelay = false)
     {
         if (isOpen) return;
-        openDelayTiem = 1f;
+        openDelayTiem = 0.5f;
         if (isDelay)
-            openDelayTiem = 2f;
+            openDelayTiem = 1.3f;
         
         StartCoroutine(PlayOpenAnim());
         isOpen = true;
@@ -37,8 +37,8 @@ public class ToiletDoorAnim : MonoBehaviour
     IEnumerator PlayOpenAnim()
     {
         yield return new WaitForSeconds(openDelayTiem);
-        toiletDoorLeft.DOLocalRotate(new Vector3(0, -rotate, 0), 0.2f);
-        toiletDoorRight.DOLocalRotate(new Vector3(0, rotate, 0), 0.2f);
+        toiletDoorLeft.DOLocalRotate(new Vector3(0, -rotate, 0), 0.5f);
+        toiletDoorRight.DOLocalRotate(new Vector3(0, rotate, 0), 0.5f);
     }
     
     IEnumerator PlayCloseAnim()
