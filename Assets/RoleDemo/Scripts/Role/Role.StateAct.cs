@@ -1279,7 +1279,10 @@ public partial class Role
     private float attendClassTime = 3;
     private float nextAttendClassTime = 5;
     private int attendClassRotate = 0;
+    private int attendClassLoop = 0;
+    private int attendClassLoopMax = 2;
     private string studyIdleStr;
+    
     
     public void EnterAttendClassAct()
     {
@@ -1306,6 +1309,7 @@ public partial class Role
         }
         
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        //第一步 播放坐下来动画
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Sitdown.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Sitdown);
@@ -1313,6 +1317,8 @@ public partial class Role
             {
                 isEventAttendClass = true;
                 animator.SetBool(ToAnimatorCondition.ToSitdown.ToString(), false);
+                
+                //第二步 播放待机动画
                 animator.SetBool(studyIdleStr, true);
             }
         }
@@ -1337,6 +1343,7 @@ public partial class Role
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Study);
             if (currRoleAnimatorStateInfo.normalizedTime > 1)
             {
+                //第四步  关闭上课动画  播放待机动画 
                 isStudy = true;
                 animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), false);
                 animator.SetBool(studyIdleStr, true);
@@ -1353,6 +1360,7 @@ public partial class Role
                     isEventAttendClass = false;
                     isEventAttendClassIdle = true;
                     durTime = 0;
+                    //第三步  待机动画 关闭  开启上课动画
                     animator.SetBool(studyIdleStr, false);
                     animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), true);
                 }
@@ -1366,6 +1374,7 @@ public partial class Role
             {
                 if (!isleaveAttendClass)
                 {
+                    //第五步  待机完毕  退出游戏
                     isStudy = false;
                     isleaveAttendClass = true;
                     durTime = 0;
@@ -1374,7 +1383,7 @@ public partial class Role
             }
         }
     }
-
+  
     private void EntryAttendClass()
     {
         if (curRandomPath == EventRandomPath.None) return;;
