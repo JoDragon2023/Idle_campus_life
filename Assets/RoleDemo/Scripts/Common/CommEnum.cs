@@ -286,8 +286,10 @@ public enum ToAnimatorCondition
 {
     ToStand,
     ToRun,
+    ToUrineWalk, //尿急
     ToWalk_01,
     ToWalk_02,
+    ToWalk_03,
     ToInteraction,
     ToNiaoji,
     ToOpenDoor_Toilet,
@@ -344,8 +346,10 @@ public enum RoleAnimatorName
     Run,
     Interaction,
     niaoji,
+    UrineWalk,
     Walk_01,
     Walk_02,
+    Walk_03,
     ToiletOne,
     ToiletTwo,
     ToiletThree,
@@ -430,6 +434,7 @@ public enum RoleAniState
     BatheTwo = 16,
     BatheThree = 17,
     BatheFour = 18,
+    UrineWalk = 19,
 }
 
 public enum EventRandomPath

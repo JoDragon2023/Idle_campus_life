@@ -160,8 +160,6 @@ public partial class Role
         }
     }
 
-  
-    
     private void OnOneRunComplete()
     {
         //开始随机位置点。
@@ -178,6 +176,16 @@ public partial class Role
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
         }
         
+        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Run.ToString()))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
+        }
+        
+        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.UrineWalk.ToString()))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.UrineWalk);
+        }
+        
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Walk_01.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
@@ -187,11 +195,24 @@ public partial class Role
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
         }
+        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Walk_03.ToString()))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
+        }
     }
     
     private void GetRunAnimation()
     {
-        var index = Random.Range(2, 4);
+        var startValue = 3;
+        if (currRandomEventAct == RandomEventAct.Event6Toilet
+            ||currRandomEventAct == RandomEventAct.Event8Toilet
+            ||currRandomEventAct == RandomEventAct.Event10Toilet)
+        {
+            startValue = 2;
+            return;
+        }
+        
+        var index = Random.Range(startValue, 6);
         var toAnimatorCondition = (ToAnimatorCondition)index;
         runCondition = toAnimatorCondition.ToString();
     }
