@@ -1,4 +1,11 @@
 ﻿
+public enum PlayAnimType
+{
+    None,
+    One,
+    Two,
+    Three
+}
 
 public enum DoorRayType
 {

@@ -24,6 +24,13 @@ public partial class Role
     /// </summary>
     private bool isPathLeaveState;
     
+    
+    private bool animIdleOne = false;
+    private bool animIdleTwo = false;
+    private bool animIdleThree = false;
+    private PlayAnimType currPlayAnimType;
+    
+    
     #region 休闲状态
     
     private float idleTime = 3;
@@ -1086,6 +1093,12 @@ public partial class Role
         isUpdateSleep = false;
         isStartSleep = false;
         isPathLeaveState = false;
+        
+        currPlayAnimType = PlayAnimType.None;
+        animIdleOne = false;
+        animIdleTwo = false;
+        animIdleThree = false;
+        
         GetSleepPath();
         EnterSleep();
     }
@@ -1115,11 +1128,8 @@ public partial class Role
                 if (!isSleepOne)
                 {
                     isSleepOne = true;
+                    animIdleOne = true;
                     animator.SetBool(ToAnimatorCondition.ToSleepOne.ToString(), false);
-                    animator.SetBool(ToAnimatorCondition.ToSleepTwo.ToString(), true);
-                    
-                    if (bedAnim != null)
-                        bedAnim.PlayAnim(BedAnimatorName.BedTwo);
                 }
             }
         }
@@ -1131,13 +1141,52 @@ public partial class Role
             {
                 if (!isSleepTwo)
                 {
+                    //第三步 床上睡觉动画 播放完毕 开始待机
                     isSleepTwo = true;
-                    isUpdateSleep = true;
                     animator.SetBool(ToAnimatorCondition.ToSleepTwo.ToString(), false);
+                    switch (currPlayAnimType)
+                    {
+                        case PlayAnimType.One:
+                            animIdleTwo = true;
+                            break;
+                        case PlayAnimType.Two:
+                            isUpdateSleep = true;
+                            break;
+                    }
                 }
             }
         }
 
+        if (animIdleOne)
+        {
+            durTime += deltaTime;
+            if (durTime > nextAttendClassTime)
+            {
+                animIdleOne = false;
+                isSleepTwo = false;
+                currPlayAnimType = PlayAnimType.One;
+                durTime = 0;
+                animator.SetBool(ToAnimatorCondition.ToSleepTwo.ToString(), true);
+                if (bedAnim != null)
+                    bedAnim.PlayAnim(BedAnimatorName.BedTwo);
+            }
+        }
+        
+        if (animIdleTwo)
+        {
+            durTime += deltaTime;
+            if (durTime > nextAttendClassTime)
+            {
+                animIdleTwo = false;
+                isSleepTwo = false;
+                currPlayAnimType = PlayAnimType.Two;
+                durTime = 0;
+                animator.SetBool(ToAnimatorCondition.ToSleepTwo.ToString(), true);
+                if (bedAnim != null)
+                    bedAnim.PlayAnim(BedAnimatorName.BedTwo);
+            }
+        }
+        
         if (isUpdateSleep)
         {
             durTime += deltaTime;
@@ -1148,6 +1197,7 @@ public partial class Role
                     isStartSleep = true;
                     isUpdateSleep = false;
                     durTime = 0;
+                    //第四步，床上待机完毕，开始 播放下床动画，
                     animator.SetBool(ToAnimatorCondition.ToSleepThree.ToString(), true);
                     
                     if (bedAnim != null)
@@ -1163,6 +1213,7 @@ public partial class Role
             {
                 if (!isSleepThree)
                 {
+                    //第五步，播放下床动画结束 退出房间，
                     isSleepThree = true;
                     animator.SetBool(ToAnimatorCondition.ToSleepThree.ToString(), false);
                     animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
@@ -1209,6 +1260,7 @@ public partial class Role
         {
             go.transform.DORotate(new Vector3(0, sleepRotate, 0), 0.2f, RotateMode.Fast).onComplete = () =>
             {
+                //第一步 播放上床动画
                 animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), false);
                 animator.SetBool(ToAnimatorCondition.ToSleepOne.ToString(), true);
                 
@@ -1272,26 +1324,23 @@ public partial class Role
     #region 上课
 
     private Vector3[] currAttendClassPath;
-    private bool isEventAttendClass;
-    private bool isEventAttendClassIdle;
     private bool isleaveAttendClass;
-    private bool isStudy;
+    private bool isStudyLeave;
     private float attendClassTime = 3;
     private float nextAttendClassTime = 5;
     private int attendClassRotate = 0;
-    private int attendClassLoop = 0;
-    private int attendClassLoopMax = 2;
     private string studyIdleStr;
-    
     
     public void EnterAttendClassAct()
     {
         durTime = 0;
-        isEventAttendClass = false;
+        currPlayAnimType = PlayAnimType.None;
+        animIdleOne = false;
+        animIdleTwo = false;
+        animIdleThree = false;
         isleaveAttendClass = false;
-        isEventAttendClassIdle = false;
         isPathLeaveState = false;
-        isStudy = false;
+        isStudyLeave = false;
         GetAttendClassPath();
         EntryAttendClass();
     }
@@ -1315,9 +1364,8 @@ public partial class Role
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Sitdown);
             if (currRoleAnimatorStateInfo.normalizedTime > 1)
             {
-                isEventAttendClass = true;
+                animIdleOne = true;
                 animator.SetBool(ToAnimatorCondition.ToSitdown.ToString(), false);
-                
                 //第二步 播放待机动画
                 animator.SetBool(studyIdleStr, true);
             }
@@ -1344,30 +1392,67 @@ public partial class Role
             if (currRoleAnimatorStateInfo.normalizedTime > 1)
             {
                 //第四步  关闭上课动画  播放待机动画 
-                isStudy = true;
                 animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), false);
                 animator.SetBool(studyIdleStr, true);
-            }
-        }
-
-        if (isEventAttendClass)
-        {
-            durTime += deltaTime;
-            if (durTime > nextAttendClassTime)
-            {
-                if (!isEventAttendClassIdle)
+                
+                switch (currPlayAnimType)
                 {
-                    isEventAttendClass = false;
-                    isEventAttendClassIdle = true;
-                    durTime = 0;
-                    //第三步  待机动画 关闭  开启上课动画
-                    animator.SetBool(studyIdleStr, false);
-                    animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), true);
+                    case PlayAnimType.One:
+                        animIdleTwo = true;
+                        break;
+                    case PlayAnimType.Two:
+                        animIdleThree = true;
+                        break;
+                    case PlayAnimType.Three:
+                        isStudyLeave = true;
+                        break;
                 }
             }
         }
 
-        if (isStudy)
+        if (animIdleOne)
+        {
+            durTime += deltaTime;
+            if (durTime > nextAttendClassTime)
+            {
+                animIdleOne = false;
+                currPlayAnimType = PlayAnimType.One;
+                durTime = 0;
+                //第三步  待机动画 关闭  开启上课动画
+                animator.SetBool(studyIdleStr, false);
+                animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), true);
+            }
+        }
+        
+        if (animIdleTwo)
+        {
+            durTime += deltaTime;
+            if (durTime > nextAttendClassTime)
+            {
+                animIdleTwo = false;
+                currPlayAnimType = PlayAnimType.Two;
+                durTime = 0;
+                //第三步  待机动画 关闭  开启上课动画
+                animator.SetBool(studyIdleStr, false);
+                animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), true);
+            }
+        }
+        
+        if (animIdleThree)
+        {
+            durTime += deltaTime;
+            if (durTime > nextAttendClassTime)
+            {
+                animIdleThree = false;
+                currPlayAnimType = PlayAnimType.Three;
+                durTime = 0;
+                //第三步  待机动画 关闭  开启上课动画
+                animator.SetBool(studyIdleStr, false);
+                animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), true);
+            }
+        }
+        
+        if (isStudyLeave)
         {
             durTime += deltaTime;
             if (durTime > nextAttendClassTime)
@@ -1375,13 +1460,14 @@ public partial class Role
                 if (!isleaveAttendClass)
                 {
                     //第五步  待机完毕  退出游戏
-                    isStudy = false;
+                    isStudyLeave = false;
                     isleaveAttendClass = true;
                     durTime = 0;
                     leaveAttendClass();
                 }
             }
         }
+        
     }
   
     private void EntryAttendClass()
