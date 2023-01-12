@@ -35,25 +35,27 @@ public partial class Role
     
     private float idleTime = 3;
     private float durTime;
+    private bool isIdle = false;
     public void EnterIdle()
     {
         durTime = 0;
+        isIdle = false;
         SetAiDestination(false);
-        animator.SetBool(ToAnimatorCondition.ToStand.ToString(), true);
+        //animator.SetBool(ToAnimatorCondition.ToStand.ToString(), true);
     }
 
     public void UpdateIdle(float deltaTime)
     {
-        currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Stand.ToString()))
-        {
-            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Stand);
-        }
+        // currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        // if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Stand.ToString()))
+        // {
+        //     animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Stand);
+        // }
 
-        durTime += deltaTime;
-        if (durTime > idleTime)
+        if (!isIdle)
         {
-            durTime = 0;
+            isIdle = true;
+            
             switch (currRandomArea)
             {
                 case RandomArea.Idle:
@@ -69,11 +71,31 @@ public partial class Role
                     break;
             }
         }
+        
+        // durTime += deltaTime;
+        // if (durTime > idleTime)
+        // {
+        //     durTime = 0;
+        //     switch (currRandomArea)
+        //     {
+        //         case RandomArea.Idle:
+        //             currRandomEventAct = RandomEventAct.Idle;
+        //             GetAllRandom(true);
+        //             SMachine.TranslateState(RoleState.Run);
+        //             break;
+        //         case RandomArea.EventOne:
+        //         case RandomArea.EventTwo:
+        //             currRandomEvent = (RandomEvent)GetNextRandomEvent();
+        //             currRandomEventAct = (RandomEventAct)GetEventRandomAct(currRandomEvent);
+        //             SMachine.TranslateState(RoleState.Run);
+        //             break;
+        //     }
+        // }
     }
 
     public void ExitIdle()
     {
-        animator.SetBool(ToAnimatorCondition.ToStand.ToString(), false);
+        //animator.SetBool(ToAnimatorCondition.ToStand.ToString(), false);
     }
 
     #endregion
