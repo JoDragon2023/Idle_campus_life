@@ -10,7 +10,7 @@ public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
     private float createTime = 2;
     private float durTime;
     private int objIdCount = 0;
-    private int roleCount = 1;
+    private int roleCount = 20;
     private bool isUpdate = false;
     
     public SceneObjMgr()

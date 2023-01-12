@@ -681,6 +681,7 @@ public partial class Role
         isToiletTwo = false;
         isToiletThree = false;
         isPathLeaveState = false;
+        animIdleOne = false;
         EnterToilet();
     }
 
@@ -720,14 +721,25 @@ public partial class Role
                 if (!isToiletTwo)
                 {
                     isToiletTwo = true;
-                    animator.SetBool(ToAnimatorCondition.ToToilet.ToString(), false);
-                    animator.SetBool(ToAnimatorCondition.ToToilet_GetUp.ToString(), true);
-                    if (toiletDoorAnim != null)
-                        toiletDoorAnim.OpenAnim(true);
+                    animIdleOne = true;
                 }
             }
         }
-
+        
+        if (animIdleOne)
+        {
+            durTime += deltaTime;
+            if (durTime > nextAttendClassTime)
+            {
+                animIdleOne = false;
+                durTime = 0;
+                animator.SetBool(ToAnimatorCondition.ToToilet.ToString(), false);
+                animator.SetBool(ToAnimatorCondition.ToToilet_GetUp.ToString(), true);
+                if (toiletDoorAnim != null)
+                    toiletDoorAnim.OpenAnim(true);
+            }
+        }
+        
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.ToiletThree.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.ToiletGetUP);
@@ -862,6 +874,7 @@ public partial class Role
         isBatheThree = false;
         isBatheFour = false;
         isPathLeaveState = false;
+        animIdleOne = false;
         batheStateAnim = BatheStateAnim.Open;
         EnterBathe();
     }
@@ -927,10 +940,7 @@ public partial class Role
                 if (!isBatheThree)
                 {
                     isBatheThree = true;
-                    animator.SetBool(ToAnimatorCondition.ToBatheThree.ToString(), false);
-                    animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
-                    //往门口的点走
-                    leaveBatheDoor();
+                    animIdleOne = true;
                 }
             }
         }
@@ -955,6 +965,21 @@ public partial class Role
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
         }
+        
+        if (animIdleOne)
+        {
+            durTime += deltaTime;
+            if (durTime > nextAttendClassTime)
+            {
+                animIdleOne = false;
+                durTime = 0;
+                animator.SetBool(ToAnimatorCondition.ToBatheThree.ToString(), false);
+                animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
+                //往门口的点走
+                leaveBatheDoor();
+            }
+        }
+        
     }
 
     /// <summary>

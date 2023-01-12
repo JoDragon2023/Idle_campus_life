@@ -135,12 +135,6 @@ public partial class Role : IStateMachineObj
             currRandomArea = RandomArea.EventTwo;
         }
         
-        // currRandomArea = RandomArea.EventTwo;
-        // if (!isAll)
-        // {
-        //     currRandomArea = RandomArea.Idle;
-        // }
-        
         currRandomTarget = randomValue;
     }
 
@@ -174,8 +168,6 @@ public partial class Role : IStateMachineObj
         }
 
         var index = Random.Range(0, randomEvent.Count);
-        
-        return (int)RandomEvent.Event3;
         return randomEvent[index];
     }
 
@@ -233,9 +225,6 @@ public partial class Role : IStateMachineObj
         return randomEventList[index];
     }
 
-
-    
-    
     // ReSharper disable Unity.PerformanceAnalysis
     private void leaveState()
     {
