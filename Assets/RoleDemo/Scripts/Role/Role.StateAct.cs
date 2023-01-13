@@ -1630,15 +1630,15 @@ public partial class Role
 
     private void GetStudentAnim()
     {
-        var index = Random.Range(0, 2);
+        //var index = Random.Range(0, 2);
         studentClassStr = ToAnimatorCondition.ToStudy.ToString();
         studentClassNameStr = RoleAnimatorName.Study.ToString();
         goToClassAniState = (int)RoleAniState.Study;
         
-        if (index != 1) return;
-        studentClassNameStr = RoleAnimatorName.ShakeHead.ToString();
-        studentClassStr = ToAnimatorCondition.ToShakeHead.ToString();
-        goToClassAniState = (int)RoleAniState.ShakeHead;
+        // if (index != 1) return;
+        // studentClassNameStr = RoleAnimatorName.ShakeHead.ToString();
+        // studentClassStr = ToAnimatorCondition.ToShakeHead.ToString();
+        // goToClassAniState = (int)RoleAniState.ShakeHead;
     }
 
     private void GetNextGoToClassTime()
