@@ -308,6 +308,8 @@ public enum ToAnimatorCondition
     ToBatheTwo,
     ToBatheThree,
     ToBatheFour,
+    ToTeacherLecture,
+    ToShakeHead,
     CurrState
 }
 
@@ -368,7 +370,9 @@ public enum RoleAnimatorName
     BatheOne,
     BatheTwo,
     BatheThree,
-    BatheFour
+    BatheFour,
+    TeacherLecture,
+    ShakeHead,
 }
 
 public enum RoleAniState
@@ -435,6 +439,14 @@ public enum RoleAniState
     BatheThree = 17,
     BatheFour = 18,
     UrineWalk = 19,
+    /// <summary>
+    /// 老师讲课 动画
+    /// </summary>
+    TeacherLecture = 20,
+    /// <summary>
+    /// 坐着左右看
+    /// </summary>
+    ShakeHead = 21,
 }
 
 public enum EventRandomPath
@@ -522,7 +534,11 @@ public enum RoleState
     /// <summary>
     /// 上课
     /// </summary>
-    AttendClass,     
+    AttendClass,
+    /// <summary>
+    /// 去上课
+    /// </summary>
+    GoToClass,
     /// <summary>
     /// 维修
     /// </summary>

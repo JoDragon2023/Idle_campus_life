@@ -1,13 +1,13 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-7913702338664586748
+--- !u!1102 &-8709066152349518055
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Get_Out_Of_Bed_Side
+  m_Name: Study
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -20,21 +20,21 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 8976811277852281504, guid: 9a15add09c2863143a0cf7cbd0bd66fb,
+  m_Motion: {fileID: 7618955587845736051, guid: 560348586e0219544ae05a055d358d97,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-3941116715105457922
+--- !u!1102 &-8320325996089008522
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sleep_01
+  m_Name: Sitdown_standby
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -47,34 +47,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -3719855601035027865, guid: 66f2c1fa075c71a42aab57e4441a1fc8,
-    type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-3683013487345525457
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 123
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: -1768797024794722030, guid: c1e1b804458b86446b1151b3e5cb2760,
+  m_Motion: {fileID: 3173997854076457002, guid: 06ae550fe3c1a1e4f99219a2bcfee977,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -103,33 +76,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1102 &-969321045402443762
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Study 1
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7618955587845736051, guid: 8e127993f9e9c0e4b97a7a1095713235,
-    type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1101 &-55346697257438835
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -174,14 +120,14 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &3433043662982710055
+--- !u!1102 &573335126538778134
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Go_To_Bed_Side
+  m_Name: sitdown
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -194,34 +140,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -1663097446699786823, guid: dbfef21f18dc12348a794ba6b14c6d63,
-    type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &6398978261360245282
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Toilet
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: -1262662048787477102, guid: c81252f8f2f5a0e4da086b3d5f7dc7b3,
+  m_Motion: {fileID: 7964698753709436734, guid: acbd696706ba6544cb3b503a25657c0c,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -238,23 +157,14 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -969321045402443762}
-    m_Position: {x: 620, y: -220, z: 0}
+    m_State: {fileID: 573335126538778134}
+    m_Position: {x: 260, y: -60, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -3683013487345525457}
-    m_Position: {x: 196.19391, y: 149.19803, z: 0}
+    m_State: {fileID: -8320325996089008522}
+    m_Position: {x: 260, y: 30, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -7913702338664586748}
-    m_Position: {x: 190, y: -240, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 3433043662982710055}
-    m_Position: {x: 160, y: -20, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -3941116715105457922}
-    m_Position: {x: 170, y: -130, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 6398978261360245282}
-    m_Position: {x: 283.56912, y: -67.77084, z: 0}
+    m_State: {fileID: -8709066152349518055}
+    m_Position: {x: 260, y: 110, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -264,4 +174,4 @@ AnimatorStateMachine:
   m_EntryPosition: {x: -230, y: 90, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 6398978261360245282}
+  m_DefaultState: {fileID: -8709066152349518055}

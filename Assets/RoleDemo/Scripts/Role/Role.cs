@@ -23,17 +23,19 @@ public partial class Role : BaseObj
     private AIDestinationSetter aiDestination ;
     private AIPath aiPath;
     //private RVOController rvoController;
-    public int randomNumMax = 50;
+    public int randomNumMax = 100;
     public int currRandomNumMax = 0;
     public int currRandomPathMax = 0;
     
     public Role(RoleData data, Action<GameObject> loadCB = null)
     {
         this.roleData = data;
-        currRoleType = data.roleType;
+        currRoleType = data.createRoleType;
 
         GameManager.Instance.DoorRaycastEvent += TriggerDoorRayEvent;
-        
+
+        InitAttendAct();
+       
         var t = GameManager.Instance.roleRoot.transform;
         if (t == null)
             return;
@@ -81,6 +83,21 @@ public partial class Role : BaseObj
         InitState();
     }
 
+    private void InitAttendAct()
+    {
+        if (roleData.roleType == RoleType.Student)
+        {
+            GameManager.Instance.StudentAttendAct += StudentAttendAct;
+        }
+        else if (roleData.roleType == RoleType.Teacher)
+        {
+            GameManager.Instance.TeacherAttendAct += TeacherAttendAct;
+        }
+        
+        GameManager.Instance.AttendEndAct += AttendEndAct;
+        GameManager.Instance.LoopAttendAct += LoopAttendAct;
+    }
+    
     private void SetAIComponent(bool isEnabled)
     {
         characterController.enabled = isEnabled;
@@ -172,10 +189,13 @@ public partial class Role : BaseObj
             {
                 if (roleList[i].currRandomEventAct == currRandomEventAct)
                 {
-                    if (roleList[i].curRandomPath == randomPath)
+                    if (roleList[i].roleData.roleType != RoleType.Teacher)
                     {
-                        GetRoleRandomPath();
-                        break;
+                        if (roleList[i].curRandomPath == randomPath)
+                        {
+                            GetRoleRandomPath();
+                            break;
+                        }
                     }
                 }
             }
@@ -210,10 +230,20 @@ public partial class Role : BaseObj
         return isSwitchDoor;
     }
     
-    
     public override void OnDelete()
     {
-        GameManager.Instance.DoorRaycastEvent -= TriggerDoorRayEvent;
+        if (roleData.roleType == RoleType.Student)
+        {
+            GameManager.Instance.StudentAttendAct -= StudentAttendAct;
+        }
+        else if (roleData.roleType == RoleType.Teacher)
+        {
+            GameManager.Instance.StudentAttendAct -= TeacherAttendAct;
+        }
+        
+        GameManager.Instance.AttendEndAct -= AttendEndAct;
+        GameManager.Instance.LoopAttendAct -= LoopAttendAct;
+        
         base.OnDelete();
         ReleaseState();
     }

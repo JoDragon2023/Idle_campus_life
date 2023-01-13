@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-[System.Serializable]
+
 public class RoleData
 {
-    public CreateRoleType roleType;
+    public CreateRoleType createRoleType;
+    public RoleType roleType;
     public int roleId;
     public Vector3 pos;
 }

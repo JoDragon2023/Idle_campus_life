@@ -67,6 +67,11 @@ public class ScenePath : MonoBehaviour
     
     private Vector3[] Event4AttendClassFourArry;
     
+    //老师上课路线
+    public Transform[] Event4TeacherClass;
+    
+    private Vector3[] Event4TeacherClassArry;
+    
     // Event7Bathe 洗澡  随机一个淋浴格
     public Transform[] Event7BathePath;
     
@@ -244,6 +249,13 @@ public class ScenePath : MonoBehaviour
         for (var i = 0; i < len; i++)
         {
             Event4AttendClassFourArry[i] = Event4AttendClassFour[i].position;
+        }
+        
+        len = Event4TeacherClass.Length;
+        Event4TeacherClassArry = new Vector3[len];
+        for (var i = 0; i < len; i++)
+        {
+            Event4TeacherClassArry[i] = Event4TeacherClass[i].position;
         }
         
         len = Event7BathePath.Length;
@@ -690,6 +702,18 @@ public class ScenePath : MonoBehaviour
         return pos;
     }
     
+    public Vector3[] GetEventGotoClassPath(EventRandomPath randomPath)
+    {
+        Vector3[] pos = null;
+        switch (randomPath)
+        {
+            case EventRandomPath.Path1:
+                pos = Event4TeacherClassArry;
+                break;
+        }
+        
+        return pos;
+    }
     
     public Vector3[] GetEvent2AttendClassPath(EventRandomPath randomPath)
     {

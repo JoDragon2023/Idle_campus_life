@@ -17,8 +17,8 @@ public class BaseObj
 
     public BaseObj()
     {
-        if (objId < 0)
-            objId = SceneObjMgr.Instance.CreateObjId();
+        // if (objId < 0)
+        //     objId = SceneObjMgr.Instance.CreateObjId();
     }
     
     

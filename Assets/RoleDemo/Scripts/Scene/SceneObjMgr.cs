@@ -5,18 +5,23 @@ using Random = UnityEngine.Random;
 
 public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
 {
-    public List<Role> roleList;    
+    public List<Role> roleList;   
+    public List<Role> roleClassList;   
     public List<BaseObj> objList;
     private float createTime = 2;
     private float durTime;
     private int objIdCount = 0;
     private int roleCount = 20;
     private bool isUpdate = false;
-    
+    /// <summary>
+    /// 是否 开始上课
+    /// </summary>
+    public bool isStartGoToClass = false;
     public SceneObjMgr()
     {
         objList = new List<BaseObj>();
         roleList = new List<Role>();
+        roleClassList = new List<Role>();
     }
 
     public void Init()
@@ -47,8 +52,20 @@ public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
     private void CreateRole()
     {
         RoleData data = new RoleData();
-        data.roleType = GetCreateRoleType();
+        data.createRoleType = GetCreateRoleType();
         data.roleId = CreateObjId();
+        data.roleType = RoleType.None;
+        if (data.roleId <= 4)
+        {
+            data.createRoleType = (CreateRoleType)data.roleId;
+            data.roleType = RoleType.Student;
+        }
+        else if (data.roleId == 5)
+        {
+            data.createRoleType = CreateRoleType.Role12;
+            data.roleType = RoleType.Teacher;
+        }
+        
         data.pos = ScenePoint.Instance.GetCreatePoint();
         CreateObj(data);
     }
@@ -82,9 +99,53 @@ public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
 
         var role = new Role(data);
         roleList.Add(role);
+        if (data.roleId <= 5)
+        {
+            roleClassList.Add(role);
+        }
+        
         return role;
     }
 
+    public void GetIsRoleEnterClass()
+    {
+        var len = roleClassList.Count;
+        bool isStartTime = true;
+        for (var i = 0; i < len; i++)
+        {
+            if (!roleClassList[i].isEnterClassroom)
+            {
+                isStartTime = false;
+                break;;
+            }
+        }
+
+        if (isStartTime)
+        {
+            isStartGoToClass = true;
+            GameManager.Instance.OpenAttendEndTime = true;
+        }
+    }
+    
+    public void GetIsRoleLeaveClass()
+    {
+        var len = roleClassList.Count;
+        bool isStartTime = true;
+        for (var i = 0; i < len; i++)
+        {
+            if (!roleClassList[i].isleaveClassroom)
+            {
+                isStartTime = false;
+                break;;
+            }
+        }
+
+        if (!isStartTime) return;
+        //开启 新的一轮
+        GameManager.Instance.OpenLoopAttendTime = true;
+        isStartGoToClass = false;
+    }
+    
     private void OnDestroy()
     {
     }

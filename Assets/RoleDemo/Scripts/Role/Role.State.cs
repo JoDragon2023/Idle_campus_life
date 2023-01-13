@@ -7,7 +7,7 @@ public partial class Role : IStateMachineObj
 {
     public float arriveDistance = 0.1f;
     private int pathIndex;
-
+    public int roleRandomId = -1;
     public StateMachine stateMachine;
     public float rotSpeed = 180;
 
@@ -58,6 +58,7 @@ public partial class Role : IStateMachineObj
         var stand = new StandState(EnterStandAct, ExitStandAct, UpdateStandAct);
         var switchDoor = new SwitchDoorState(EnterSwitchDoorAct, ExitSwitchDoorAct, UpdateSwitchDoorAct);
         var sleep = new SleepState(EnterSleepAct, ExitSleepAct, UpdateSleepAct);
+        var goToClass = new GoToClassState(EnterGoToClassAct, ExitGoToClassAct, UpdateGoToClassAct);
         stateMachine = new StateMachine(idle);
         stateMachine.InitState(run);
         stateMachine.InitState(talk);
@@ -72,6 +73,7 @@ public partial class Role : IStateMachineObj
         stateMachine.InitState(stand);
         stateMachine.InitState(switchDoor);
         stateMachine.InitState(sleep);
+        stateMachine.InitState(goToClass);
 
         //
         // switch (currRoleType)
@@ -103,7 +105,71 @@ public partial class Role : IStateMachineObj
         stateMachine.TranslateNextState();
     }
 
-    public int roleRandomId = -1;
+    /// <summary>
+    /// 是否 强制 退出 状态 
+    /// </summary>
+    private bool isCompelLeaveState = false;
+    
+    /// <summary>
+    /// 下课了
+    /// </summary>
+    private bool isClassIsOver = false;
+
+    /// <summary>
+    /// 是否 进入教室
+    /// </summary>
+    public bool isEnterClassroom = false;
+    
+    /// <summary>
+    /// 退出 教室
+    /// </summary>
+    public bool isleaveClassroom = false;
+    
+    /// <summary>
+    /// 学生上课 事件
+    /// </summary>
+    private void StudentAttendAct()
+    {
+        //Debug.Log("  StudentAttendAct ");
+        //退出当前状态
+        isCompelLeaveState = true;
+    }
+
+    /// <summary>
+    /// 老师上课 事件
+    /// </summary>
+    private void TeacherAttendAct()
+    {
+        isCompelLeaveState = true;
+        //Debug.Log("  TeacherAttendAct ");
+    }
+
+    /// <summary>
+    /// 上课结束 事件
+    /// </summary>
+    private void AttendEndAct()
+    {
+        //Debug.Log("  AttendEndAct ");
+        isClassIsOver = true;
+    }
+
+    /// <summary>
+    /// 循环上课 事件
+    /// </summary>
+    private void LoopAttendAct()
+    {
+        //Debug.Log("  LoopAttendAct ");
+    }
+
+    /// <summary>
+    /// 切换状态 到上课状态
+    /// </summary>
+    private void ChangeAttendClass()
+    {
+        currRandomEvent = RandomEvent.Event4;
+        currRandomEventAct = RandomEventAct.Event4AttendClass;
+        SMachine.TranslateState(RoleState.Run);
+    }
     
     // ReSharper disable Unity.PerformanceAnalysis
     /// <summary>
@@ -149,7 +215,7 @@ public partial class Role : IStateMachineObj
             randomEvent.Add((int)RandomEvent.Event3);
             randomEvent.Add((int)RandomEvent.Event1);
             randomEvent.Add((int)RandomEvent.Event2);
-            randomEvent.Add((int)RandomEvent.Event4);
+            //randomEvent.Add((int)RandomEvent.Event4);
             randomEvent.Add((int)RandomEvent.Event6);
             randomEvent.Add((int)RandomEvent.Event7);
             randomEvent.Add((int)RandomEvent.Event10);
@@ -159,7 +225,7 @@ public partial class Role : IStateMachineObj
         else if (currRandomArea == RandomArea.EventTwo)
         {
             randomEvent.Add((int)RandomEvent.Event2);
-            randomEvent.Add((int)RandomEvent.Event4);
+            //randomEvent.Add((int)RandomEvent.Event4);
             //randomEvent.Add((int)RandomEvent.Event5);
             randomEvent.Add((int)RandomEvent.Event8);
             randomEvent.Add((int)RandomEvent.Event9);
