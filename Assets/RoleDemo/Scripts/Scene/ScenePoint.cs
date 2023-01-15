@@ -89,6 +89,10 @@ public class ScenePoint : MonoBehaviour
     public Transform[] Event5SwitchDoorTarget;
     private Vector3[] Event5SwitchDoorArry;
     
+    //事件12 科学实验室 
+    public Transform[] Event12LaboratoryTarget;
+    private Vector3[] Event12LaboratoryArry;
+    
     private void Awake()
     {
         Instance = this;
@@ -213,6 +217,11 @@ public class ScenePoint : MonoBehaviour
             Event5SwitchDoorArry[i] = Event5SwitchDoorTarget[i].position;
         }
 
+        Event12LaboratoryArry = new Vector3[Event12LaboratoryTarget.Length];
+        for (var i = 0; i < Event12LaboratoryTarget.Length; i++)
+        {
+            Event12LaboratoryArry[i] = Event12LaboratoryTarget[i].position;
+        }
         
     }
 
@@ -275,8 +284,8 @@ public class ScenePoint : MonoBehaviour
             case RandomEventAct.Event10Toilet:
                 pos = Event10ToiletTargetArry[0];
                 break;
-            case RandomEventAct.Event11Bathe:
-                pos = Event11BatheTargetArry[0];
+            case RandomEventAct.Event12Laboratory:
+                pos = Event12LaboratoryArry[0];
                 break;
         
         }

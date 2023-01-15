@@ -213,6 +213,10 @@ public enum RandomEventAct
     /// 事件11 洗澡  随机一个淋浴格
     /// </summary>
     Event11Bathe,
+    /// <summary>
+    /// 科学实验室
+    /// </summary>
+    Event12Laboratory,
 }
 
 /// <summary>
@@ -461,7 +465,10 @@ public enum EventRandomPath
     Path1,
     Path2,
     Path3,
-    Path4
+    Path4,
+    Path5,
+    Path6,
+    Path7
 }
 
 /// <summary>

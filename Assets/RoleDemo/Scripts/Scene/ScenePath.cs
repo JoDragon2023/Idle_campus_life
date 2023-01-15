@@ -145,6 +145,10 @@ public class ScenePath : MonoBehaviour
     
     private Vector3[] Event5SleepFourArry;
     
+    public Transform[] Event12Laboratory;
+    
+    private Vector3[] Event12SLaboratoryArry;
+    
     private void Awake()
     {
         Instance = this;
@@ -376,8 +380,78 @@ public class ScenePath : MonoBehaviour
         {
             Event5SleepFourArry[i] = Event5SleepFour[i].position;
         }
+        
+        len = Event12Laboratory.Length;
+        Event12SLaboratoryArry = new Vector3[len];
+        for (var i = 0; i < len; i++)
+        {
+            Event12SLaboratoryArry[i] = Event12Laboratory[i].position;
+        }
     }
-
+    
+    
+    
+    /// <summary>
+    /// 事件12  科学实验路线
+    /// </summary>
+    /// <returns></returns>
+    public Dictionary<int, Vector3[]> GeEvent12LaboratoryPath()
+    {
+        Dictionary<int, Vector3[]> randomInfoDic = new Dictionary<int, Vector3[]>();
+        var index = UnityEngine.Random.Range(1 , 7);
+        var sitRandom = (EventRandomPath)index;
+        Vector3[] pos = null;
+        List<int> pathList = new List<int>();
+        switch (sitRandom)
+        {
+            case EventRandomPath.Path1:
+                pathList.Add(0);
+                pathList.Add(1);
+                break;
+            case EventRandomPath.Path2:
+                pathList.Add(0);
+                pathList.Add(2);
+                break;
+            case EventRandomPath.Path3:
+                pathList.Add(0);
+                pathList.Add(3);
+                break;
+            case EventRandomPath.Path4:
+                pathList.Add(0);
+                pathList.Add(3);
+                pathList.Add(4);
+                break;
+            case EventRandomPath.Path5:
+                pathList.Add(0);
+                pathList.Add(3);
+                pathList.Add(5);
+                break;
+            case EventRandomPath.Path6:
+                pathList.Add(0);
+                pathList.Add(6);
+                pathList.Add(7);
+                break;
+            case EventRandomPath.Path7:
+                pathList.Add(0);
+                pathList.Add(6);
+                pathList.Add(7);
+                pathList.Add(8);
+                pathList.Add(9);
+                break;
+        }
+        
+        if (randomInfoDic.ContainsKey(index))
+        {
+            randomInfoDic[index] = pos;
+        }
+        else
+        {
+            randomInfoDic.Add(index, pos);
+        }
+        
+        return randomInfoDic;
+    }
+    
     /// <summary>
     /// 事件3 睡觉路线
     /// </summary>
