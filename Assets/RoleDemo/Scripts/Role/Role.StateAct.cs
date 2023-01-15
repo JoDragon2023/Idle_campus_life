@@ -928,10 +928,17 @@ public partial class Role
         {
             animator = roleAnimator.roleAnimator;
         }
-        
-        roleAnimator.effect.SetActive(true);
-        go.transform.DOScale(Vector3.one, 2f).onComplete = () => { roleAnimator.effect.SetActive(false); };
     }
+
+    private void PlayEffect()
+    {
+        go.transform.DOScale(Vector3.one, 2.4f).onComplete = () =>
+        {
+            roleAnimator.effect.SetActive(true);
+            go.transform.DOScale(Vector3.one, 2f).onComplete = () => { roleAnimator.effect.SetActive(false); };
+        };
+    }
+    
 
     public void UpdateBatheAct(float deltaTime)
     {
@@ -1038,6 +1045,7 @@ public partial class Role
                     batheStateAnim = BatheStateAnim.Close;
                     animator.SetBool(ToAnimatorCondition.ToBatheFour.ToString(), false);
                     animator.SetBool(ToAnimatorCondition.ToBatheOne.ToString(), true);
+                    PlayEffect();
                 }
             }
         }
@@ -1138,7 +1146,11 @@ public partial class Role
 
         go.transform.DOPath(ScenePath.Instance.GetEventToiletActPath(bathePath), 1.5f, PathType.CatmullRom)
             .SetEase(Ease.Linear)
-            .SetLookAt(0).onComplete = () => { animator.SetBool(ToAnimatorCondition.ToBatheOne.ToString(), true); };
+            .SetLookAt(0).onComplete = () =>
+        {
+            animator.SetBool(ToAnimatorCondition.ToBatheOne.ToString(), true);
+            PlayEffect();
+        };
     }
 
     /// <summary>
