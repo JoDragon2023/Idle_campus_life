@@ -284,6 +284,9 @@ public class ScenePoint : MonoBehaviour
             case RandomEventAct.Event10Toilet:
                 pos = Event10ToiletTargetArry[0];
                 break;
+            case RandomEventAct.Event11Bathe:
+                pos = Event11BatheTargetArry[0];
+                break;
             case RandomEventAct.Event12Laboratory:
                 pos = Event12LaboratoryArry[0];
                 break;

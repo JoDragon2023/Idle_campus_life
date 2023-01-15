@@ -53,7 +53,7 @@ public class BaseObj
             GameObject gameObject = LoadHelper.LoadPrefab(asset);
             if (gameObject == null)
             {
-                Debug.LogError("LoadGo == null");
+                Debug.LogError("LoadTarget == null");
                 return;
             }
             target = GameObject.Instantiate(gameObject);

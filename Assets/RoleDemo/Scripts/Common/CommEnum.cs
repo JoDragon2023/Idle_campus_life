@@ -67,7 +67,13 @@ public enum CreateRoleType
     Role9,
     Role10,
     Role11,
-    Role12
+    Role12,
+    Role13,
+    Role14,
+    Role15,
+    Role16,
+    Role17,
+    Role18
 }
 
 

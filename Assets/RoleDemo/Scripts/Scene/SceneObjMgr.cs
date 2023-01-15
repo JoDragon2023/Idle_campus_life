@@ -52,8 +52,16 @@ public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
     private void CreateRole()
     {
         RoleData data = new RoleData();
-        data.createRoleType = GetCreateRoleType();
         data.roleId = CreateObjId();
+        if (data.roleId > 16)
+        {
+            data.createRoleType = GetCreateRoleType();
+        }
+        else
+        {
+            data.createRoleType = (CreateRoleType)data.roleId;
+        }
+       
         data.roleType = RoleType.None;
         if (data.roleId <= 4)
         {
@@ -72,7 +80,7 @@ public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
 
     private CreateRoleType GetCreateRoleType()
     {
-        var index = Random.Range(1, 13);
+        var index = Random.Range(1, 17);
         return (CreateRoleType)index;
     }
     
