@@ -310,6 +310,7 @@ public enum ToAnimatorCondition
     ToBatheFour,
     ToTeacherLecture,
     ToShakeHead,
+    ToSleepIdle,
     CurrState
 }
 
@@ -373,6 +374,7 @@ public enum RoleAnimatorName
     BatheFour,
     TeacherLecture,
     ShakeHead,
+    SleepIdle,
 }
 
 public enum RoleAniState
@@ -447,6 +449,10 @@ public enum RoleAniState
     /// 坐着左右看
     /// </summary>
     ShakeHead = 21,
+    /// <summary>
+    /// 床上待机动画
+    /// </summary>
+    SleepIdle = 22,
 }
 
 public enum EventRandomPath

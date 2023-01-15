@@ -10,10 +10,12 @@ public partial class Role
     /// 当前 随机的事件
     /// </summary>
     public RandomEvent currRandomEvent = RandomEvent.None;
+
     /// <summary>
     /// 当前 随机的行为
     /// </summary>
     public RandomEventAct currRandomEventAct = RandomEventAct.Main;
+
     /// <summary>
     /// 当前 随机的路径
     /// </summary>
@@ -23,18 +25,19 @@ public partial class Role
     /// 这个是给路径找不到的时候，切换状态用的。
     /// </summary>
     private bool isPathLeaveState;
-    
+
     private bool animIdleOne = false;
     private bool animIdleTwo = false;
     private bool animIdleThree = false;
     private PlayAnimType currPlayAnimType;
-    
-    
+
+
     #region 休闲状态
-    
+
     private float idleTime = 3;
     private float durTime;
     private bool isIdle = false;
+
     public void EnterIdle()
     {
         durTime = 0;
@@ -50,10 +53,10 @@ public partial class Role
             isCompelLeaveState = false;
             ChangeAttendClass();
         }
-        
+
         if (isIdle) return;
         isIdle = true;
-        
+
         switch (currRandomArea)
         {
             case RandomArea.Idle:
@@ -72,7 +75,6 @@ public partial class Role
 
     public void ExitIdle()
     {
-        
     }
 
     #endregion
@@ -86,10 +88,10 @@ public partial class Role
     private float runDistance;
     private bool isPenetrate = false;
     private float penetrateTime = 0.3f;
-    
+
     //行走动画条件
     private string runCondition;
-    
+
     // ReSharper disable Unity.PerformanceAnalysis
     public void EnterRun()
     {
@@ -145,50 +147,51 @@ public partial class Role
         SetAIComponent(true);
         isRunUpdate = true;
     }
-    
+
     private void RunAnimatorSetInteger()
-    { 
+    {
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Run.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
         }
-        
+
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.UrineWalk.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.UrineWalk);
         }
-        
+
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Walk_01.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
         }
-        
+
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Walk_02.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
         }
+
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Walk_03.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
         }
     }
-    
+
     private void GetRunAnimation()
     {
         var startValue = 3;
         if (currRandomEventAct == RandomEventAct.Event6Toilet
-            ||currRandomEventAct == RandomEventAct.Event8Toilet
-            ||currRandomEventAct == RandomEventAct.Event10Toilet)
+            || currRandomEventAct == RandomEventAct.Event8Toilet
+            || currRandomEventAct == RandomEventAct.Event10Toilet)
         {
             startValue = 2;
             return;
         }
-        
+
         var index = Random.Range(startValue, 6);
         var toAnimatorCondition = (ToAnimatorCondition)index;
         runCondition = toAnimatorCondition.ToString();
     }
-    
+
     public void UpdateRun(float deltaTime)
     {
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
@@ -203,7 +206,7 @@ public partial class Role
             currRandomTarget = ScenePoint.Instance.GetRandomEventActPoint(currRandomEventAct);
             SetTargetPos(currRandomTarget);
         }
-        
+
         if (isRunUpdate)
         {
             if (go != null && target != null)
@@ -219,7 +222,7 @@ public partial class Role
                     isPenetrate = false;
                     durTime = 0;
                 }
-                
+
                 runDistance = distance;
                 if (distance < 0.5f)
                 {
@@ -228,7 +231,7 @@ public partial class Role
                 }
             }
         }
-        
+
         if (isPenetrate)
         {
             durTime += deltaTime;
@@ -237,7 +240,7 @@ public partial class Role
                 isPenetrate = false;
                 durTime = 0;
                 SetCharacterController(false);
-                go.transform.DOScale(Vector3.one, 1f).onComplete = () => {SetCharacterController(true);};
+                go.transform.DOScale(Vector3.one, 1f).onComplete = () => { SetCharacterController(true); };
             }
         }
     }
@@ -316,7 +319,8 @@ public partial class Role
 
     private void RunMainPath()
     {
-        go.transform.DOPath(ScenePoint.Instance.GetMainPath(), 13, PathType.CatmullRom).SetEase(Ease.Linear).SetLookAt(0)
+        go.transform.DOPath(ScenePoint.Instance.GetMainPath(), 13, PathType.CatmullRom).SetEase(Ease.Linear)
+            .SetLookAt(0)
             .onComplete = () =>
         {
             go.transform.DOPath(ScenePoint.Instance.GetStepsTwo(), 1.5f, PathType.CatmullRom).SetEase(Ease.Linear)
@@ -358,7 +362,7 @@ public partial class Role
                 return;
             }
         }
-        
+
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Sitdown.ToString()))
         {
@@ -395,8 +399,8 @@ public partial class Role
     {
         GetRolePath(4);
         if (curRandomPath == EventRandomPath.None) return;
-        
-        Vector3[] randomArry = null ;
+
+        Vector3[] randomArry = null;
         if (currRandomEventAct == RandomEventAct.Event1Sit)
         {
             randomArry = ScenePath.Instance.GetEvent1SitPath(curRandomPath);
@@ -408,7 +412,7 @@ public partial class Role
     private void EntrySit()
     {
         if (curRandomPath == EventRandomPath.None) return;
-        
+
         if (currRandomEventAct == RandomEventAct.Event1Sit)
         {
             switch (curRandomPath)
@@ -499,7 +503,7 @@ public partial class Role
                 return;
             }
         }
-        
+
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Stand.ToString()))
         {
@@ -530,7 +534,7 @@ public partial class Role
     private void EntryStand()
     {
         if (curRandomPath == EventRandomPath.None) return;
-        
+
         standTime = 2.5f;
         standRotate = 90;
         if (curRandomPath == EventRandomPath.Path2)
@@ -611,7 +615,7 @@ public partial class Role
                 return;
             }
         }
-        
+
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Drink.ToString()))
         {
@@ -636,7 +640,7 @@ public partial class Role
     private void EntryEatDrink()
     {
         if (curRandomPath == EventRandomPath.None) return;
-        
+
         SetAIComponent(false);
         animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
         go.transform.DOPath(currEventEatDrinkPath, eatDrinkTime, PathType.CatmullRom).SetEase(Ease.Linear)
@@ -690,7 +694,8 @@ public partial class Role
     private Vector3[] toiletPath;
     private int rotate = 180;
     private ToiletDoorAnim toiletDoorAnim;
-    
+    private int nextToiletTime = 10;
+
     public void EnterToiletAct()
     {
         isToiletOne = false;
@@ -712,7 +717,7 @@ public partial class Role
                 return;
             }
         }
-        
+
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.ToiletOne.ToString()))
         {
@@ -741,11 +746,11 @@ public partial class Role
                 }
             }
         }
-        
+
         if (animIdleOne)
         {
             durTime += deltaTime;
-            if (durTime > nextAttendClassTime)
+            if (durTime > nextToiletTime)
             {
                 animIdleOne = false;
                 durTime = 0;
@@ -755,7 +760,7 @@ public partial class Role
                     toiletDoorAnim.OpenAnim(true);
             }
         }
-        
+
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.ToiletThree.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.ToiletGetUP);
@@ -768,7 +773,7 @@ public partial class Role
                     animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
                     if (toiletDoorAnim != null)
                         toiletDoorAnim.CloseAnim(true);
-                    
+
                     leaveToilet();
                 }
             }
@@ -818,19 +823,20 @@ public partial class Role
         {
             randomAry = ScenePath.Instance.GetEvent6ToiletPath(curRandomPath);
         }
+
         if (currRandomEventAct == RandomEventAct.Event10Toilet)
         {
             randomAry = ScenePath.Instance.GetEvent10ToiletPath(curRandomPath);
         }
 
         toiletPath = randomAry;
-        
+
         go.transform.DOPath(ScenePath.Instance.GetEventToiletActPath(toiletPath), 1.5f, PathType.CatmullRom)
             .SetEase(Ease.Linear)
             .SetLookAt(0).onComplete = () =>
         {
             animator.SetBool(ToAnimatorCondition.ToOpenDoor_Toilet.ToString(), true);
-            
+
             if (toiletDoorAnim != null)
             {
                 toiletDoorAnim.OpenAnim();
@@ -856,7 +862,7 @@ public partial class Role
         {
             if (toiletDoorAnim != null)
                 toiletDoorAnim.CloseAnim();
-            
+
             go.transform.DORotate(new Vector3(0, rotate, 0), 0.2f, RotateMode.Fast).onComplete = () =>
             {
                 animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), false);
@@ -871,7 +877,7 @@ public partial class Role
     }
 
     #endregion
-    
+
     #region 洗澡
 
     private bool isBatheOne = false;
@@ -881,7 +887,12 @@ public partial class Role
     private Vector3[] bathePath;
     private int batheRotate = 180;
     private int batheRotateDoor = 180;
+    private int roleNakedType = 1;
+    private float batheTime = 10;
+    private float batheIdleTime;
+    private int batheIdleTimeMax = 3;
     private BatheStateAnim batheStateAnim;
+
 
     public void EnterBatheAct()
     {
@@ -891,13 +902,39 @@ public partial class Role
         isBatheFour = false;
         isPathLeaveState = false;
         animIdleOne = false;
+        animIdleTwo = false;
+        batheIdleTime = 0;
         batheStateAnim = BatheStateAnim.Open;
+        roleNakedType = Random.Range(1, 3);
         EnterBathe();
+    }
+
+    private void ShowRoleBatheModel(bool isNaked)
+    {
+        if (roleNakedType == 1)
+        {
+            animator = roleAnimator.nakedOneAnimator;
+            roleAnimator.nakedOne.SetActive(isNaked);
+            roleAnimator.role.SetActive(!isNaked);
+        }
+        else if (roleNakedType == 2)
+        {
+            animator = roleAnimator.nakedTwoAnimator;
+            roleAnimator.nakedTwo.SetActive(isNaked);
+            roleAnimator.role.SetActive(!isNaked);
+        }
+
+        if (!isNaked)
+        {
+            animator = roleAnimator.roleAnimator;
+        }
+        
+        roleAnimator.effect.SetActive(true);
+        go.transform.DOScale(Vector3.one, 2f).onComplete = () => { roleAnimator.effect.SetActive(false); };
     }
 
     public void UpdateBatheAct(float deltaTime)
     {
-        
         if (curRandomPath == EventRandomPath.None)
         {
             if (!isPathLeaveState)
@@ -907,8 +944,13 @@ public partial class Role
                 return;
             }
         }
-        
+
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Stand.ToString()))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Stand);
+        }
         
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.BatheOne.ToString()))
         {
@@ -918,17 +960,40 @@ public partial class Role
                 if (!isBatheOne)
                 {
                     isBatheOne = true;
+                    animIdleTwo = true;
                     if (batheStateAnim == BatheStateAnim.Open)
                     {
                         animator.SetBool(ToAnimatorCondition.ToBatheOne.ToString(), false);
-                        animator.SetBool(ToAnimatorCondition.ToBatheTwo.ToString(), true);
+                        ShowRoleBatheModel(true);
+                        animator.SetBool(ToAnimatorCondition.ToStand.ToString(), true);
                     }
                     else if (batheStateAnim == BatheStateAnim.Close)
                     {
                         animator.SetBool(ToAnimatorCondition.ToBatheOne.ToString(), false);
-                        animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
-                        leaveBathe();
+                        ShowRoleBatheModel(false);
+                        animator.SetBool(ToAnimatorCondition.ToStand.ToString(), true);
                     }
+                   
+                }
+            }
+        }
+
+        if (animIdleTwo)
+        {
+            batheIdleTime += deltaTime;
+            if (batheIdleTime > batheIdleTimeMax)
+            {
+                animIdleTwo = false;
+                batheIdleTime = 0;
+                animator.SetBool(ToAnimatorCondition.ToStand.ToString(), false);
+                if (batheStateAnim == BatheStateAnim.Open)
+                {
+                    animator.SetBool(ToAnimatorCondition.ToBatheTwo.ToString(), true);
+                }
+                else if (batheStateAnim == BatheStateAnim.Close)
+                {
+                    animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
+                    leaveBathe();
                 }
             }
         }
@@ -981,11 +1046,11 @@ public partial class Role
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
         }
-        
+
         if (animIdleOne)
         {
             durTime += deltaTime;
-            if (durTime > nextAttendClassTime)
+            if (durTime > batheTime)
             {
                 animIdleOne = false;
                 durTime = 0;
@@ -995,7 +1060,6 @@ public partial class Role
                 leaveBatheDoor();
             }
         }
-        
     }
 
     /// <summary>
@@ -1006,7 +1070,7 @@ public partial class Role
         batheRotateDoor = 0;
         if (currRandomEventAct == RandomEventAct.Event7Bathe)
             batheRotateDoor = 180;
-        
+
         if (currRandomEventAct == RandomEventAct.Event11Bathe)
             batheRotateDoor = 180;
 
@@ -1022,8 +1086,8 @@ public partial class Role
             };
         };
     }
-    
-    
+
+
     /// <summary>
     /// 退出洗澡间
     /// </summary>
@@ -1057,7 +1121,7 @@ public partial class Role
     {
         GetRolePath(5);
         if (curRandomPath == EventRandomPath.None) return;
-       
+
         SetAIComponent(false);
         var randomAry = ScenePath.Instance.GetEvent9BathePath(curRandomPath);
         if (currRandomEventAct == RandomEventAct.Event7Bathe)
@@ -1071,13 +1135,10 @@ public partial class Role
         }
 
         bathePath = randomAry;
-        
+
         go.transform.DOPath(ScenePath.Instance.GetEventToiletActPath(bathePath), 1.5f, PathType.CatmullRom)
             .SetEase(Ease.Linear)
-            .SetLookAt(0).onComplete = () =>
-        {
-            animator.SetBool(ToAnimatorCondition.ToBatheOne.ToString(), true);
-        };
+            .SetLookAt(0).onComplete = () => { animator.SetBool(ToAnimatorCondition.ToBatheOne.ToString(), true); };
     }
 
     /// <summary>
@@ -1119,7 +1180,7 @@ public partial class Role
     private bool isSleepThree = false;
     private bool isUpdateSleep = false;
     private bool isStartSleep = false;
-    
+
     private Vector3[] sleepPath;
     private int sleepRotate = 180;
     private float sleepTime = 1f;
@@ -1134,11 +1195,16 @@ public partial class Role
         isUpdateSleep = false;
         isStartSleep = false;
         isPathLeaveState = false;
-        
-        currPlayAnimType = PlayAnimType.None;
+
         animIdleOne = false;
-        animIdleTwo = false;
-        animIdleThree = false;
+        loopAnimNameStr = RoleAnimatorName.SleepTwo.ToString();
+        loopAnimName = ToAnimatorCondition.ToSleepTwo.ToString();
+        loopIdleAnimName = ToAnimatorCondition.ToSleepIdle.ToString();
+        loopAnimState = (int)RoleAniState.SleepTwo;
+        isLoopAnim = false;
+        isStartLoopAnim = false;
+        isEndLoopAnim = false;
+        loopAnimTime = 0;
         
         GetSleepPath();
         EnterSleep();
@@ -1159,7 +1225,7 @@ public partial class Role
 
         if (bedAnim != null)
             bedAnim.UpdateBedAnim();
-        
+
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.SleepOne.ToString()))
         {
@@ -1170,83 +1236,12 @@ public partial class Role
                 {
                     isSleepOne = true;
                     animIdleOne = true;
+                    isStartLoopAnim = true;
                     animator.SetBool(ToAnimatorCondition.ToSleepOne.ToString(), false);
                 }
             }
         }
 
-        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.SleepTwo.ToString()))
-        {
-            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.SleepTwo);
-            if (currRoleAnimatorStateInfo.normalizedTime > 1)
-            {
-                if (!isSleepTwo)
-                {
-                    //第三步 床上睡觉动画 播放完毕 开始待机
-                    isSleepTwo = true;
-                    animator.SetBool(ToAnimatorCondition.ToSleepTwo.ToString(), false);
-                    switch (currPlayAnimType)
-                    {
-                        case PlayAnimType.One:
-                            animIdleTwo = true;
-                            break;
-                        case PlayAnimType.Two:
-                            isUpdateSleep = true;
-                            break;
-                    }
-                }
-            }
-        }
-
-        if (animIdleOne)
-        {
-            durTime += deltaTime;
-            if (durTime > nextAttendClassTime)
-            {
-                animIdleOne = false;
-                isSleepTwo = false;
-                currPlayAnimType = PlayAnimType.One;
-                durTime = 0;
-                animator.SetBool(ToAnimatorCondition.ToSleepTwo.ToString(), true);
-                if (bedAnim != null)
-                    bedAnim.PlayAnim(BedAnimatorName.BedTwo);
-            }
-        }
-        
-        if (animIdleTwo)
-        {
-            durTime += deltaTime;
-            if (durTime > nextAttendClassTime)
-            {
-                animIdleTwo = false;
-                isSleepTwo = false;
-                currPlayAnimType = PlayAnimType.Two;
-                durTime = 0;
-                animator.SetBool(ToAnimatorCondition.ToSleepTwo.ToString(), true);
-                if (bedAnim != null)
-                    bedAnim.PlayAnim(BedAnimatorName.BedTwo);
-            }
-        }
-        
-        if (isUpdateSleep)
-        {
-            durTime += deltaTime;
-            if (durTime > nextSleepTime)
-            {
-                if (!isStartSleep)
-                {
-                    isStartSleep = true;
-                    isUpdateSleep = false;
-                    durTime = 0;
-                    //第四步，床上待机完毕，开始 播放下床动画，
-                    animator.SetBool(ToAnimatorCondition.ToSleepThree.ToString(), true);
-                    
-                    if (bedAnim != null)
-                        bedAnim.PlayAnim(BedAnimatorName.BedThree);
-                }
-            }
-        }
-        
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.SleepThree.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.SleepThree);
@@ -1267,12 +1262,86 @@ public partial class Role
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
         }
+        
+        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.SleepIdle.ToString()))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.SleepIdle);
+        }
+
+        if (isStartLoopAnim)
+        {
+            loopAnimTime += deltaTime;
+            if (loopAnimTime > maxLoopAnimTime)
+            {
+                isStartLoopAnim = false;
+                loopAnimTime = 0;
+                isEndLoopAnim = true;
+            }
+        }
+        
+        LoopRoleSleepAnim(deltaTime);
     }
+    
+    
+    /// <summary>
+    /// 重复播放动画
+    /// </summary>
+    /// <param name="deltaTime"></param>
+    private void LoopRoleSleepAnim(float deltaTime)
+    {
+        if (currRoleAnimatorStateInfo.IsName(loopAnimNameStr))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), loopAnimState);
+            if (currRoleAnimatorStateInfo.normalizedTime > 1)
+            {
+                if (!isLoopAnim)
+                {
+                    durTime = 0;
+                    isLoopAnim = true;
+                    animIdleOne = true;
+                    //第四步  关闭上课动画  播放待机动画 
+                    animator.SetBool(loopAnimName, false);
+                    animator.SetBool(loopIdleAnimName, true);
+                    if (bedAnim != null)
+                        bedAnim.PlayAnim(BedAnimatorName.BedTwo);
+                }
+            }
+        }
+
+        if (animIdleOne)
+        {
+            durTime += deltaTime;
+            if (durTime > nextAttendClassTime)
+            {
+                animIdleOne = false;
+                isLoopAnim = false;
+                durTime = 0;
+                animator.SetBool(loopIdleAnimName, false);
+                animator.SetBool(loopAnimName, true);
+                if (bedAnim != null)
+                    bedAnim.PlayAnim(BedAnimatorName.BedTwo);
+            }
+            
+            if (isEndLoopAnim)
+            {
+                isEndLoopAnim = false;
+                animIdleOne = false;
+                durTime = 0;
+                animator.SetBool(loopIdleAnimName, false);
+                animator.SetBool(loopAnimName, false);
+                //第四步，床上待机完毕，开始 播放下床动画，
+                animator.SetBool(ToAnimatorCondition.ToSleepThree.ToString(), true);
+                if (bedAnim != null)
+                    bedAnim.PlayAnim(BedAnimatorName.BedThree);
+            }
+        }
+    }
+    
 
     private void EnterSleep()
     {
         if (curRandomPath == EventRandomPath.None) return;
-        
+
         SetAIComponent(false);
 
         sleepRotate = 180;
@@ -1304,7 +1373,7 @@ public partial class Role
                 //第一步 播放上床动画
                 animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), false);
                 animator.SetBool(ToAnimatorCondition.ToSleepOne.ToString(), true);
-                
+
                 if (bedAnim != null)
                     bedAnim.PlayAnim(BedAnimatorName.BedOne);
             };
@@ -1336,11 +1405,11 @@ public partial class Role
     // ReSharper disable Unity.PerformanceAnalysis
     private void GetSleepPath()
     {
-       GetRolePath(5);
-       if (curRandomPath == EventRandomPath.None) return;
+        GetRolePath(5);
+        if (curRandomPath == EventRandomPath.None) return;
 
-       
-       Vector3[] randomArry = null;
+
+        Vector3[] randomArry = null;
         if (currRandomEventAct == RandomEventAct.Event3Sleep)
         {
             bedAnim = GameManager.Instance.GetBedAnim(curRandomPath);
@@ -1353,15 +1422,15 @@ public partial class Role
 
         sleepPath = randomArry;
     }
-    
+
     public void ExitSleepAct()
     {
     }
 
     #endregion
-    
+
     #region 去上课
-    
+
     private Vector3[] currGoToClassPath;
     private bool isleaveGoToClass;
     private bool isGotoIdleLeave;
@@ -1370,15 +1439,18 @@ public partial class Role
     private bool isGoToClassLoop = false;
     private float goToClassTime = 3;
     private float nextGoToClassTime = 5;
+    private float startClassTime;
+    private int startClassTimeMax;
     private int goToClassRotate = 0;
     private int goToClassAniState = 0;
     private string goToClassIdleStr;
     private string studentClassStr;
     private string studentClassNameStr;
-    
+
     private void EnterGoToClassAct()
     {
         durTime = 0;
+        startClassTime = 0;
         animIdleOne = false;
         isleaveGoToClass = false;
         isPathLeaveState = false;
@@ -1391,7 +1463,7 @@ public partial class Role
     }
 
     private void UpdateGoToClassAct(float deltaTime)
-    {   
+    {
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         //第一步 播放坐下来动画
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Sitdown.ToString()))
@@ -1405,7 +1477,6 @@ public partial class Role
                     animator.SetBool(ToAnimatorCondition.ToSitdown.ToString(), false);
                     //第二步 播放待机动画
                     animator.SetBool(goToClassIdleStr, true);
-                    
                     //判断 是否都进入教室
                     SceneObjMgr.Instance.GetIsRoleEnterClass();
                 }
@@ -1416,7 +1487,7 @@ public partial class Role
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Stand);
         }
-        
+
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Walk_01.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
@@ -1426,7 +1497,7 @@ public partial class Role
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.StudyIdle);
         }
-        
+
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.StudyCourseIdle.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.StudyIdle);
@@ -1436,21 +1507,26 @@ public partial class Role
         {
             if (!isEnterIdle)
             {
-                isEnterIdle = true;
-                
                 if (roleData.roleType == RoleType.Student)
                 {
                     animator.SetBool(goToClassIdleStr, false);
-                
+                    startClassTime += deltaTime;
+                    if (startClassTime > startClassTimeMax)
+                    {
+                        startClassTime = 0;
+                        isEnterIdle = true;
+                        animator.SetBool(studentClassStr, true);
+                    }
+                    
                 }
                 else if (roleData.roleType == RoleType.Teacher)
                 {
+                    isEnterIdle = true;
                     animator.SetBool(ToAnimatorCondition.ToStand.ToString(), false);
+                    animator.SetBool(studentClassStr, true);
                 }
-                
-                animator.SetBool(studentClassStr, true);
             }
-            
+
             PlayGotoClassLoopAnim(deltaTime);
         }
     }
@@ -1473,10 +1549,9 @@ public partial class Role
                     animIdleOne = true;
                     GetNextGoToClassTime();
                 }
-               
             }
         }
-        
+
         if (animIdleOne)
         {
             if (!isClassIsOver)
@@ -1492,12 +1567,12 @@ public partial class Role
 
                     if (roleData.roleType == RoleType.Student)
                         GetStudentAnim();
-                
+
                     //如果是学生的话 ，这里要随机一下。
                     animator.SetBool(studentClassStr, true);
                 }
             }
-          
+
             if (isClassIsOver)
             {
                 if (roleData.roleType == RoleType.Teacher)
@@ -1520,7 +1595,7 @@ public partial class Role
             }
         }
     }
-  
+
     private void EntryGoToClass()
     {
         if (curRandomPath == EventRandomPath.None) return;
@@ -1536,7 +1611,7 @@ public partial class Role
             goToClassAniState = (int)RoleAniState.TeacherLecture;
             goToClassRotate = 180;
         }
-        
+
         GetGoToClassPathTime();
         SetAIComponent(false);
         animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
@@ -1572,7 +1647,6 @@ public partial class Role
                 PathType.CatmullRom).SetEase(Ease.Linear)
             .SetLookAt(0).onComplete = () =>
         {
-            
             isEnterClassroom = false;
             isleaveClassroom = true;
             SceneObjMgr.Instance.GetIsRoleLeaveClass();
@@ -1599,7 +1673,7 @@ public partial class Role
             curRandomPath = EventRandomPath.Path1;
             randomAry = ScenePath.Instance.GetEventGotoClassPath(curRandomPath);
         }
-        
+
         currGoToClassPath = randomAry;
     }
 
@@ -1610,7 +1684,7 @@ public partial class Role
             goToClassTime = 2.5f;
             return;
         }
-        
+
         switch (curRandomPath)
         {
             case EventRandomPath.Path1:
@@ -1630,11 +1704,12 @@ public partial class Role
 
     private void GetStudentAnim()
     {
+        startClassTimeMax = Random.Range(0, 5);
         //var index = Random.Range(0, 2);
         studentClassStr = ToAnimatorCondition.ToStudy.ToString();
         studentClassNameStr = RoleAnimatorName.Study.ToString();
         goToClassAniState = (int)RoleAniState.Study;
-        
+
         // if (index != 1) return;
         // studentClassNameStr = RoleAnimatorName.ShakeHead.ToString();
         // studentClassStr = ToAnimatorCondition.ToShakeHead.ToString();
@@ -1643,24 +1718,34 @@ public partial class Role
 
     private void GetNextGoToClassTime()
     {
-        nextGoToClassTime = UnityEngine.Random.Range(5 , 15);
+        nextGoToClassTime = UnityEngine.Random.Range(5, 15);
     }
-    
-    
+
+
     private void ExitGoToClassAct()
     {
     }
-    
+
     #endregion
-    
+
     #region 上课
+
     private Vector3[] currAttendClassPath;
-    private bool isleaveAttendClass;
-    private bool isStudyLeave;
+    private bool isSitdownAnim;
     private float attendClassTime = 3;
     private float nextAttendClassTime = 5;
     private int attendClassRotate = 0;
     private string studyIdleStr;
+
+    private string loopAnimNameStr;
+    private string loopAnimName;
+    private string loopIdleAnimName;
+    private int loopAnimState;
+    private float loopAnimTime = 0;
+    private int maxLoopAnimTime = 45;
+    private bool isLoopAnim;
+    private bool isStartLoopAnim = false;
+    private bool isEndLoopAnim = false;
     
     private void EnterAttendClassAct()
     {
@@ -1669,13 +1754,22 @@ public partial class Role
         animIdleOne = false;
         animIdleTwo = false;
         animIdleThree = false;
-        isleaveAttendClass = false;
         isPathLeaveState = false;
-        isStudyLeave = false;
+        isSitdownAnim = false;
+
+        loopAnimNameStr = RoleAnimatorName.Study.ToString();
+        loopIdleAnimName = ToAnimatorCondition.ToStudyIdle.ToString();
+        loopAnimName = ToAnimatorCondition.ToStudy.ToString();
+        loopAnimState = (int)RoleAniState.Study;
+        isLoopAnim = false;
+        isStartLoopAnim = false;
+        isEndLoopAnim = false;
+        loopAnimTime = 0;
+        
         GetAttendClassPath();
         EntryAttendClass();
     }
-    
+
     private void UpdateAttendClassAct(float deltaTime)
     {
         if (curRandomPath == EventRandomPath.None)
@@ -1687,7 +1781,7 @@ public partial class Role
                 return;
             }
         }
-        
+
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         //第一步 播放坐下来动画
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Sitdown.ToString()))
@@ -1695,116 +1789,96 @@ public partial class Role
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Sitdown);
             if (currRoleAnimatorStateInfo.normalizedTime > 1)
             {
-                animIdleOne = true;
-                animator.SetBool(ToAnimatorCondition.ToSitdown.ToString(), false);
-                //第二步 播放待机动画
-                animator.SetBool(studyIdleStr, true);
+                if (!isSitdownAnim)
+                {
+                    isSitdownAnim = true;
+                    animator.SetBool(ToAnimatorCondition.ToSitdown.ToString(), false);
+                    animator.SetBool(loopIdleAnimName, true);
+                    animIdleOne = true;
+                    isStartLoopAnim = true;
+                }
             }
         }
-    
+
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Walk_01.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
         }
-    
+
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.StudyIdle.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.StudyIdle);
         }
-        
+
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.StudyCourseIdle.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.StudyIdle);
         }
-        
-        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Study.ToString()))
+
+        if (isStartLoopAnim)
         {
-            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Study);
+            loopAnimTime += deltaTime;
+            if (loopAnimTime > maxLoopAnimTime)
+            {
+                isStartLoopAnim = false;
+                loopAnimTime = 0;
+                isEndLoopAnim = true;
+            }
+        }
+
+        LoopRoleAttendClassAnim(deltaTime);
+    }
+
+
+    /// <summary>
+    /// 重复播放动画
+    /// </summary>
+    /// <param name="deltaTime"></param>
+    private void LoopRoleAttendClassAnim(float deltaTime)
+    {
+        if (currRoleAnimatorStateInfo.IsName(loopAnimNameStr))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), loopAnimState);
             if (currRoleAnimatorStateInfo.normalizedTime > 1)
             {
-                //第四步  关闭上课动画  播放待机动画 
-                animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), false);
-                animator.SetBool(studyIdleStr, true);
-                
-                switch (currPlayAnimType)
+                if (!isLoopAnim)
                 {
-                    case PlayAnimType.One:
-                        animIdleTwo = true;
-                        break;
-                    case PlayAnimType.Two:
-                        animIdleThree = true;
-                        break;
-                    case PlayAnimType.Three:
-                        isStudyLeave = true;
-                        break;
+                    durTime = 0;
+                    isLoopAnim = true;
+                    //第四步  关闭上课动画  播放待机动画 
+                    animator.SetBool(loopAnimName, false);
+                    animator.SetBool(loopIdleAnimName, true);
+                    animIdleOne = true;
                 }
             }
         }
-    
+
         if (animIdleOne)
         {
             durTime += deltaTime;
             if (durTime > nextAttendClassTime)
             {
                 animIdleOne = false;
-                currPlayAnimType = PlayAnimType.One;
+                isLoopAnim = false;
                 durTime = 0;
-                //第三步  待机动画 关闭  开启上课动画
-                animator.SetBool(studyIdleStr, false);
-                animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), true);
+                animator.SetBool(loopIdleAnimName, false);
+                animator.SetBool(loopAnimName, true);
             }
-        }
-        
-        if (animIdleTwo)
-        {
-            durTime += deltaTime;
-            if (durTime > nextAttendClassTime)
+            
+            if (isEndLoopAnim)
             {
-                animIdleTwo = false;
-                currPlayAnimType = PlayAnimType.Two;
+                isEndLoopAnim = false;
+                animIdleOne = false;
                 durTime = 0;
-                //第三步  待机动画 关闭  开启上课动画
-                animator.SetBool(studyIdleStr, false);
-                animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), true);
+                leaveAttendClass();
             }
         }
-        
-        if (animIdleThree)
-        {
-            durTime += deltaTime;
-            if (durTime > nextAttendClassTime)
-            {
-                animIdleThree = false;
-                currPlayAnimType = PlayAnimType.Three;
-                durTime = 0;
-                //第三步  待机动画 关闭  开启上课动画
-                animator.SetBool(studyIdleStr, false);
-                animator.SetBool(ToAnimatorCondition.ToStudy.ToString(), true);
-            }
-        }
-        
-        if (isStudyLeave)
-        {
-            durTime += deltaTime;
-            if (durTime > nextAttendClassTime)
-            {
-                if (!isleaveAttendClass)
-                {
-                    //第五步  待机完毕  退出游戏
-                    isStudyLeave = false;
-                    isleaveAttendClass = true;
-                    durTime = 0;
-                    leaveAttendClass();
-                }
-            }
-        }
-        
     }
     
     private void EntryAttendClass()
     {
-        if (curRandomPath == EventRandomPath.None) return;;
-    
+        if (curRandomPath == EventRandomPath.None) return;
+
         studyIdleStr = ToAnimatorCondition.ToStudyCourseIdle.ToString();
         attendClassRotate = 0;
         if (currRandomEventAct == RandomEventAct.Event2AttendClass)
@@ -1812,7 +1886,7 @@ public partial class Role
             studyIdleStr = ToAnimatorCondition.ToStudyIdle.ToString();
             attendClassRotate = 90;
         }
-        
+
         GetAttendClassPathTime();
         SetAIComponent(false);
         animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
@@ -1826,7 +1900,7 @@ public partial class Role
             };
         };
     }
-    
+
     private void leaveAttendClass()
     {
         animator.SetBool(studyIdleStr, false);
@@ -1836,7 +1910,7 @@ public partial class Role
         {
             leavePoint = ScenePoint.Instance.GetRandomEventActPoint(RandomEventAct.Event4AttendClass);
         }
-    
+
         go.transform.DOPath(ScenePath.Instance.GetBackPath(currAttendClassPath, leavePoint), attendClassTime,
                 PathType.CatmullRom).SetEase(Ease.Linear)
             .SetLookAt(0).onComplete = () =>
@@ -1847,14 +1921,14 @@ public partial class Role
             SMachine.TranslateState(RoleState.Run);
         };
     }
-    
-    
+
+
     // ReSharper disable Unity.PerformanceAnalysis
     private void GetAttendClassPath()
     {
         GetRolePath(5);
         if (curRandomPath == EventRandomPath.None) return;
-        
+
         Vector3[] randomAry = null;
         if (currRandomEventAct == RandomEventAct.Event2AttendClass)
         {
@@ -1864,10 +1938,10 @@ public partial class Role
         {
             randomAry = ScenePath.Instance.GetEvent4AttendClassPath(curRandomPath);
         }
-        
+
         currAttendClassPath = randomAry;
     }
-    
+
     private void GetAttendClassPathTime()
     {
         if (currRandomEventAct == RandomEventAct.Event2AttendClass)
@@ -1907,11 +1981,11 @@ public partial class Role
             }
         }
     }
-    
+
     private void ExitAttendClassAct()
     {
     }
-    
+
     #endregion
 
     #region 开关柜门
@@ -1921,6 +1995,7 @@ public partial class Role
     private bool isSwitchDoorLeave = false;
     private bool isSwitchDoorPath = false;
     private float switchDoorTime = 2.5f;
+
     public void EnterSwitchDoorAct()
     {
         isSwitchDoorLeave = false;
@@ -1939,7 +2014,7 @@ public partial class Role
                 leaveState();
             }
         }
-        
+
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.OpenSwitchDoor.ToString()))
@@ -2002,7 +2077,8 @@ public partial class Role
             leavePoint = ScenePoint.Instance.GetRandomEventActPoint(RandomEventAct.Event5SwitchDoor);
         }
 
-        go.transform.DOPath(ScenePath.Instance.GetBackPath(switchDoorPath, leavePoint), switchDoorTime, PathType.CatmullRom)
+        go.transform.DOPath(ScenePath.Instance.GetBackPath(switchDoorPath, leavePoint), switchDoorTime,
+                PathType.CatmullRom)
             .SetEase(Ease.Linear)
             .SetLookAt(0).onComplete = () =>
         {
@@ -2045,7 +2121,7 @@ public partial class Role
     }
 
     #endregion
-    
+
     #region 维修
 
     public void ExitRepairAct()
@@ -2079,7 +2155,7 @@ public partial class Role
     }
 
     #endregion
-    
+
     #region 尿急
 
     public void EnterUrinationAct()
@@ -2106,7 +2182,7 @@ public partial class Role
     }
 
     #endregion
-    
+
     #region 头部动作
 
     public void ExitHeadAct()
@@ -2139,7 +2215,7 @@ public partial class Role
     }
 
     #endregion
-    
+
     #region 打扫垃圾
 
     public void ExitCleanGarbageAct()
@@ -2156,5 +2232,4 @@ public partial class Role
     }
 
     #endregion
-    
 }

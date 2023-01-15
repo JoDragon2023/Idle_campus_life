@@ -22,6 +22,7 @@ public partial class Role : BaseObj
     private SimpleSmoothModifier simpleSmoothModifier ;
     private AIDestinationSetter aiDestination ;
     private AIPath aiPath;
+    private RoleAnimator roleAnimator;
     //private RVOController rvoController;
     public int randomNumMax = 100;
     public int currRandomNumMax = 0;
@@ -79,6 +80,7 @@ public partial class Role : BaseObj
         simpleSmoothModifier = go.GetComponent<SimpleSmoothModifier>();
         aiDestination = go.GetComponent<AIDestinationSetter>();
         aiPath = go.GetComponent<AIPath>();
+        roleAnimator = go.GetComponent<RoleAnimator>();
         //rvoController = go.GetComponent<RVOController>();
         InitState();
     }
