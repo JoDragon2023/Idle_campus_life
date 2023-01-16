@@ -1,4 +1,30 @@
 ﻿
+public enum GuideStep
+{
+    None,
+    /// <summary>
+    /// 移动摄像头
+    /// </summary>
+    Panning,    
+    /// <summary>
+    /// 旋转
+    /// </summary>
+    Rotating,
+    /// <summary>
+    /// 缩放
+    /// </summary>
+    Zooming,
+    /// <summary>
+    /// 俯视
+    /// </summary>
+    Lift,
+    /// <summary>
+    /// 完成新手引导
+    /// </summary>
+    Complete,
+}
+
+
 public enum PlayAnimType
 {
     None,

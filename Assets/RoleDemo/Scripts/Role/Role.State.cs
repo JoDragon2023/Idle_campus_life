@@ -218,15 +218,20 @@ public partial class Role : IStateMachineObj
             //randomEvent.Add((int)RandomEvent.Event4);
             randomEvent.Add((int)RandomEvent.Event6);
             randomEvent.Add((int)RandomEvent.Event7);
+            randomEvent.Add((int)RandomEvent.Event8);
+            randomEvent.Add((int)RandomEvent.Event9);
             randomEvent.Add((int)RandomEvent.Event10);
             randomEvent.Add((int)RandomEvent.Event11);
             //randomEvent.Add((int)RandomEvent.Event5);
         }
         else if (currRandomArea == RandomArea.EventTwo)
         {
+            randomEvent.Add((int)RandomEvent.Event3);
+            randomEvent.Add((int)RandomEvent.Event1);
             randomEvent.Add((int)RandomEvent.Event2);
             //randomEvent.Add((int)RandomEvent.Event4);
-            //randomEvent.Add((int)RandomEvent.Event5);
+            randomEvent.Add((int)RandomEvent.Event6);
+            randomEvent.Add((int)RandomEvent.Event7);
             randomEvent.Add((int)RandomEvent.Event8);
             randomEvent.Add((int)RandomEvent.Event9);
             randomEvent.Add((int)RandomEvent.Event10);
