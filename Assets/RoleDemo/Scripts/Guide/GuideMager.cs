@@ -40,7 +40,12 @@ public class GuideMager : MonoBehaviour
     [HideInInspector]
     public bool isTile = false;
 
+    private bool isStartGuide = false;
     private int currStep = 0;
+    private float durTime;
+    private float StartTime = 1;
+    
+    
     private void Awake()
     {
         Instance = this;
@@ -58,6 +63,20 @@ public class GuideMager : MonoBehaviour
     void Start()
     {
         StartGuide();
+    }
+
+    private void Update()
+    {
+        if (isStartGuide)
+        {
+            durTime += Time.deltaTime;
+            if (durTime > StartTime)
+            {
+                isStartGuide = false;
+                durTime = 0;
+                StartGuide();
+            }
+        }
     }
 
     public void StartGuide()
@@ -82,7 +101,7 @@ public class GuideMager : MonoBehaviour
         currGuideStep = (GuideStep)currStep;
         PlayerPrefs.SetInt(GuideStepStr, (int)currGuideStep);
         PlayerPrefs.Save();
-        StartGuide();
+        isStartGuide = true;
     }
 
     private void SetCheck(GuideStep guideStep, bool isStart)
