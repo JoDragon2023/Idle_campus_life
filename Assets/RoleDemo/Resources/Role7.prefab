@@ -179,6 +179,7 @@ MonoBehaviour:
   emojiCoolOne: {fileID: 1235196717326686861}
   emojiCoolTwo: {fileID: 8220481180735071812}
   effect: {fileID: 433857294241582853}
+  di: {fileID: 2891173872023702719}
 --- !u!1001 &755858830392904863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -334,6 +335,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7eeaad777070e34aa88372e0091a6ba, type: 3}
+--- !u!1 &2891173872023702719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4632560897367670396, guid: d7eeaad777070e34aa88372e0091a6ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 7518102924475232963}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4205429719334902325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5911285443251939574, guid: d7eeaad777070e34aa88372e0091a6ba,
