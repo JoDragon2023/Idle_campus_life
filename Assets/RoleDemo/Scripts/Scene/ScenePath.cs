@@ -400,7 +400,29 @@ public class ScenePath : MonoBehaviour
             CarPathArry[i] = CarPath[i].position;
         }
     }
-    
+
+    public Vector3[] GetCarPath(EventRandomPath sitRandom)
+    {
+        Vector3[] pos = null;
+        List<Vector3> pathList = new List<Vector3>();
+        switch (sitRandom)
+        {
+            case EventRandomPath.Path1:
+                pathList.Add(CarPathArry[0]);
+                pathList.Add(CarPathArry[1]);
+                pathList.Add(CarPathArry[2]);
+                break;
+            case EventRandomPath.Path2:
+                pathList.Add(CarPathArry[3]);
+                pathList.Add(CarPathArry[4]);
+                pathList.Add(CarPathArry[5]);
+                break;
+        }
+
+        pos = pathList.ToArray();
+        
+        return pos;
+    }
     
     /// <summary>
     /// 事件12  科学实验路线
@@ -450,6 +472,7 @@ public class ScenePath : MonoBehaviour
                 pathList.Add(9);
                 break;
         }
+
         
         if (randomInfoDic.ContainsKey(index))
         {
