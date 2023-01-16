@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToiletBatheEffect : MonoSingleton<ToiletBatheEffect>,IDisposable
+public class ToiletBatheEffect : MonoBehaviour
 {
+    public static ToiletBatheEffect Instance;
     public List<GameObject> Event6ToiletList;
     public List<GameObject> Event7BatheList;
    
@@ -15,6 +16,11 @@ public class ToiletBatheEffect : MonoSingleton<ToiletBatheEffect>,IDisposable
     public List<GameObject> Even11BatheList;
 
     private GameObject effect;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void ShowEffect()
     {
