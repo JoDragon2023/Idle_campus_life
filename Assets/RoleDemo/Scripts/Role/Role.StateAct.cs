@@ -909,11 +909,12 @@ public partial class Role
     private int batheRotate = 180;
     private int batheRotateDoor = 180;
     private int roleNakedType = 1;
+    private int batheDoorRotate = -90;
     private float batheTime = 10;
     private float batheIdleTime;
     private int batheIdleTimeMax = 3;
     private BatheStateAnim batheStateAnim;
-
+    private GameObject batheDoorObj;
 
     public void EnterBatheAct()
     {
@@ -996,6 +997,7 @@ public partial class Role
                         animator.SetBool(ToAnimatorCondition.ToBatheOne.ToString(), false);
                         ShowRoleBatheModel(true);
                         animator.SetBool(ToAnimatorCondition.ToStand.ToString(), true);
+                        OpenBatheDoorAnim();
                     }
                     else if (batheStateAnim == BatheStateAnim.Close)
                     {
@@ -1115,6 +1117,7 @@ public partial class Role
             {
                 animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), false);
                 animator.SetBool(ToAnimatorCondition.ToBatheFour.ToString(), true);
+                CloseBatheDoorAnim();
             };
         };
     }
@@ -1153,6 +1156,8 @@ public partial class Role
     {
         GetRolePath(5);
         if (curRandomPath == EventRandomPath.None) return;
+        
+        batheDoorObj = BatheDoorAnim.Instance.GetBatheDoor(currRandomEvent,curRandomPath);
         toiletBathe = ToiletBatheEffect.Instance.GetEffect(currRandomEvent,curRandomPath);
         SetAIComponent(false);
         var randomAry = ScenePath.Instance.GetEvent9BathePath(curRandomPath);
@@ -1202,7 +1207,22 @@ public partial class Role
         };
     }
 
-
+    private void OpenBatheDoorAnim()
+    {
+        go.transform.DOScale(Vector3.one, 3.6f).onComplete = () =>
+        {
+            batheDoorObj.transform.DOLocalRotate(new Vector3(0, batheDoorRotate, 0), 0.5f);
+        };
+    }
+    
+    private void CloseBatheDoorAnim()
+    {
+        go.transform.DOScale(Vector3.one, 1f).onComplete = () =>
+        {
+            batheDoorObj.transform.DOLocalRotate(Vector3.zero, 0.5f);
+        };
+    }
+    
     public void ExitBatheAct()
     {
         animator.SetBool(ToAnimatorCondition.ToToilet.ToString(), false);

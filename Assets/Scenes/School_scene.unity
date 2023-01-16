@@ -1582,6 +1582,12 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
+--- !u!1 &55315561 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 524635722}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &59199298
 GameObject:
   m_ObjectHideFlags: 0
@@ -3286,6 +3292,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -4262,6 +4273,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 187824742}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &202687204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 313652731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &205850416
 GameObject:
   m_ObjectHideFlags: 0
@@ -4581,6 +4598,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8186588930397695727, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8186588930397695727, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8186588930397695727, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8186588930397695727, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -4594,6 +4636,11 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147026077573945897, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5929,6 +5976,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -5940,6 +5992,11 @@ PrefabInstance:
       value: Toilet_Item_Showers (5)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -6550,6 +6607,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb8f5229140b5cd4298fe69536fa1aed,
     type: 3}
   m_PrefabInstance: {fileID: 331500810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &337853008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1573094673}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &343450227
 PrefabInstance:
@@ -7712,6 +7775,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1301415890}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &463286181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1572912966}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &463639371
 GameObject:
   m_ObjectHideFlags: 0
@@ -8855,6 +8924,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -8866,6 +8940,11 @@ PrefabInstance:
       value: Toilet_Item_Showers (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -9436,6 +9515,64 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561255993}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &561468939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 561468941}
+  - component: {fileID: 561468940}
+  m_Layer: 0
+  m_Name: BatheDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &561468940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561468939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a395f8498daf7634daca829f075d348c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event7BatheList:
+  - {fileID: 883952321}
+  - {fileID: 202687204}
+  - {fileID: 463286181}
+  - {fileID: 746613332}
+  Event9BatheList:
+  - {fileID: 337853008}
+  - {fileID: 55315561}
+  - {fileID: 721209617}
+  - {fileID: 735823691}
+  Even11BatheList:
+  - {fileID: 764380275}
+  - {fileID: 593663879}
+  - {fileID: 1928280507}
+  - {fileID: 1689794951}
+--- !u!4 &561468941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561468939}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &563755335
 GameObject:
   m_ObjectHideFlags: 0
@@ -10245,6 +10382,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589361327}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &593663879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1133580111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &601803761
 GameObject:
   m_ObjectHideFlags: 0
@@ -11670,6 +11813,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718441359}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &721209617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 823089929}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &721522322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12075,6 +12224,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733788254}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &735823691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 777194674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &740889914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12230,6 +12385,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743867958}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &746613332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1026427166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &749841303
 GameObject:
   m_ObjectHideFlags: 0
@@ -12311,6 +12472,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749841303}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &764380275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 150891541}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &767496038
 GameObject:
   m_ObjectHideFlags: 0
@@ -12773,6 +12940,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -12784,6 +12956,11 @@ PrefabInstance:
       value: Toilet_Item_Showers
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -13676,6 +13853,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -13687,6 +13869,11 @@ PrefabInstance:
       value: Toilet_Item_Showers (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -14833,6 +15020,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882013734}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &883952321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1237536577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &891888559 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1590264771963470455, guid: 06e3300b37fcc974f88524ea3f4a6af7,
@@ -17259,6 +17452,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -19323,6 +19521,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -20760,6 +20963,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -20771,6 +20979,11 @@ PrefabInstance:
       value: Toilet_Item_Showers (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -22598,6 +22811,133 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1363396539}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1363889818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1363889820}
+  - component: {fileID: 1363889819}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1363889819
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363889818}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c80c51ad342f14342a0d0f5e8d45df2d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.45
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1363889820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363889818}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1371878870
 GameObject:
   m_ObjectHideFlags: 0
@@ -25160,6 +25500,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -25171,6 +25516,11 @@ PrefabInstance:
       value: Toilet_Item_Showers (11)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -26314,6 +26664,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8186588930397695727, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8186588930397695727, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8186588930397695727, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8186588930397695727, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -26325,6 +26700,11 @@ PrefabInstance:
       value: Toilet_Item_Showers (6)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -26399,6 +26779,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7890068772991734656, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_Enabled
@@ -26410,6 +26795,11 @@ PrefabInstance:
       value: Toilet_Item_Showers (3)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5f4317be07ee3704dbc0a005cff027f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -28729,6 +29119,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a190fc483e245f441bd41130dfbc7319,
     type: 3}
   m_PrefabInstance: {fileID: 1688102003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1689794951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1510039744}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1692254941
 PrefabInstance:
@@ -34082,6 +34478,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2734840474987288506, guid: 60fc2f8b3a8a9104f9ad4f39b953a38f,
     type: 3}
   m_PrefabInstance: {fileID: 2734840476349728771}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1928280507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5002246732943010253, guid: 5f4317be07ee3704dbc0a005cff027f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 222911428}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1929898877
 GameObject:
