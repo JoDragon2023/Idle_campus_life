@@ -31,18 +31,30 @@ public class GuideMager : MonoBehaviour
     private GuideStep currGuideStep = GuideStep.None;
     [HideInInspector]
     public bool isGuide = false;
-    
+    [HideInInspector]
+    public bool isPan = false;
+    [HideInInspector]
+    public bool isRotate = false;
+    [HideInInspector]
+    public bool isZoom = false;
+    [HideInInspector]
+    public bool isTile = false;
+
+    private int currStep = 0;
     private void Awake()
     {
         Instance = this;
         var step = PlayerPrefs.GetInt(GuideStepStr);
         currGuideStep = (GuideStep)step;
-        if (step == 0)
+        if (step <= 0)
         {
             currGuideStep = GuideStep.Panning;
         }
+
+        currStep = (int)currGuideStep;
+        
     }
-    
+
     void Start()
     {
         StartGuide();
@@ -52,11 +64,13 @@ public class GuideMager : MonoBehaviour
     {
         if (currGuideStep == GuideStep.Complete) return;
         isGuide = true;
+        SetCheck(currGuideStep,true);
         SetIsShowGuide(currGuideStep,true);
     }
     
     public void CompleteGuide(GuideStep guideStep)
     {
+        SetCheck(guideStep,false);
         if (guideStep == GuideStep.Lift)
         {
             guideStep = GuideStep.Complete;
@@ -64,10 +78,32 @@ public class GuideMager : MonoBehaviour
         }
         
         SetIsShowGuide(guideStep,false);
-        PlayerPrefs.SetInt(GuideStepStr, (int)guideStep);
+        currStep++;
+        currGuideStep = (GuideStep)currStep;
+        PlayerPrefs.SetInt(GuideStepStr, (int)currGuideStep);
         PlayerPrefs.Save();
+        StartGuide();
     }
 
+    private void SetCheck(GuideStep guideStep, bool isStart)
+    {
+        switch (guideStep)
+        {
+            case GuideStep.Panning:
+                isPan = isStart;
+                break;
+            case GuideStep.Rotating:
+                isRotate = isStart;
+                break;
+            case GuideStep.Zooming:
+                isZoom = isStart;
+                break;
+            case GuideStep.Lift:
+                isTile = isStart;
+                break;
+        }
+    }
+    
     private void SetIsShowGuide(GuideStep guideStep,bool isStart)
     {
         switch (guideStep)

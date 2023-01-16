@@ -334,6 +334,22 @@ namespace CTMobileCameraTools
                 accumulatedDrag = Vector2.zero;
             }
 #endif
+
+            
+            if (GuideMager.Instance.isGuide)
+            {
+                if (GuideMager.Instance.isPan)
+                {
+                    if (-accumulatedDrag.y > 0.02 || -accumulatedDrag.x > 0.02 
+                                                  ||-accumulatedDrag.y < -0.02 || -accumulatedDrag.x < -0.02)
+                    {
+                
+                        GuideMager.Instance.CompleteGuide(GuideStep.Panning);
+                        //Debug.Log(" -accumulatedDrag.x  "+ (-accumulatedDrag.x) + "  -accumulatedDrag.y   "+(-accumulatedDrag.y));
+                    }
+                }
+            }
+           
             transform.Translate(new Vector3(-accumulatedDrag.x, 0, -accumulatedDrag.y), Space.Self);
 
             //CLAMP BOUNDS
@@ -407,6 +423,18 @@ namespace CTMobileCameraTools
                         accumulatedZoom = 0;
                     }
 
+                    if (GuideMager.Instance.isGuide)
+                    {
+                        if (GuideMager.Instance.isZoom)
+                        {
+                            if (accumulatedZoom > 0.02 || accumulatedZoom < -0.02)
+                            {
+                                GuideMager.Instance.CompleteGuide(GuideStep.Zooming);
+                                //Debug.Log(" zoomNode  Translate  "+accumulatedZoom);
+                            }
+                        }
+                    }
+                    
                     zoomNode.Translate(Vector3.forward * accumulatedZoom);
                 }
                 else
@@ -414,6 +442,7 @@ namespace CTMobileCameraTools
                     if ((ctCamera.orthographicSize + accumulatedZoom < zoomProjectionMax && accumulatedZoom > 0) || (ctCamera.orthographicSize + accumulatedZoom > zoomProjectionMin && accumulatedZoom < 0))
                     {
                         ctCamera.orthographicSize += accumulatedZoom;
+                        
                         //MOVE THE CAMERA OUT TO AVOID CLIPPING
                         zoomNode.transform.localPosition = new Vector3(zoomNode.transform.localPosition.x, zoomNode.transform.localPosition.y, ctCamera.orthographicSize * -5f);
                     }
@@ -473,6 +502,18 @@ namespace CTMobileCameraTools
                 accumulatedRotation = rotationSpeed * delta;
             }
 #endif
+            
+            if (GuideMager.Instance.isGuide)
+            {
+                if (GuideMager.Instance.isRotate)
+                {
+                    if (accumulatedRotation > 0.04 || accumulatedRotation < -0.04)
+                    {
+                        GuideMager.Instance.CompleteGuide(GuideStep.Rotating);
+                        // Debug.Log(" Rotate  accumulatedRotation  " + accumulatedRotation);
+                    }
+                }
+            }
             transform.localEulerAngles += new Vector3(0, accumulatedRotation, 0);
 
             //DECREASE THE INERTIA OVER TIME
@@ -525,6 +566,19 @@ namespace CTMobileCameraTools
 
             }
 #endif
+
+            if (GuideMager.Instance.isGuide)
+            {
+                if (GuideMager.Instance.isTile)
+                {
+                    if (accumulatedTilt > 0.1 || accumulatedTilt < -0.1)
+                    {
+                        GuideMager.Instance.CompleteGuide(GuideStep.Lift);
+                        //Debug.Log(" Tilt  accumulatedTilt  " + accumulatedTilt);
+                    }
+                }
+            }
+            
             tiltNode.localEulerAngles += new Vector3(accumulatedTilt, 0, 0);
 
             //DECREASE THE INERTIA OVER TIME
