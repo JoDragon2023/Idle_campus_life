@@ -234,7 +234,7 @@ public partial class Role : IStateMachineObj
         }
 
         var index = Random.Range(0, randomEvent.Count);
-        return (int)RandomEvent.Event11;
+        //return (int)RandomEvent.Event11;
         return randomEvent[index];
     }
 
