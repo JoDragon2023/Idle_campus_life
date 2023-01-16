@@ -256,7 +256,7 @@ PlayerSettings:
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 1
   AndroidTargetDevices: 0
-  AndroidSplashScreenScale: 2
+  AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 2800000, guid: c926f6819c202974a8c16e2f5c7d971c, type: 3}
   AndroidKeystoreName: '{inproject}: campus.keystore'
   AndroidKeyaliasName: campus
@@ -278,7 +278,14 @@ PlayerSettings:
   AndroidMinifyDebug: 0
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 119cfb885fcd98749b83a61f77ee0b4f, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: Android
     m_Icons:

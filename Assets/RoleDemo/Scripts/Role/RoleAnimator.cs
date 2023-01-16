@@ -16,4 +16,6 @@ public class RoleAnimator : MonoBehaviour
     public GameObject emojiCoolTwo;
     
     public GameObject effect;
+
+    public GameObject di;
 }
