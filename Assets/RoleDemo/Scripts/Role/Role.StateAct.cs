@@ -30,7 +30,8 @@ public partial class Role
     private bool animIdleTwo = false;
     private bool animIdleThree = false;
     private PlayAnimType currPlayAnimType;
-
+    private GameObject toiletBathe;
+    
 
     #region 休闲状态
 
@@ -743,7 +744,7 @@ public partial class Role
                 {
                     isToiletTwo = true;
                     animIdleOne = true;
-                    ToiletBatheEffect.Instance.ShowEffect();
+                    ShowToiletBatheEffect();
                 }
             }
         }
@@ -788,7 +789,7 @@ public partial class Role
 
     private void leaveToilet()
     {
-        ToiletBatheEffect.Instance.CloseEffect();
+        CloseToiletBatheEffect();
         var leavePoint = ScenePoint.Instance.GetRandomEventActPoint(RandomEventAct.Event8Toilet);
 
         if (currRandomEventAct == RandomEventAct.Event6Toilet)
@@ -817,7 +818,7 @@ public partial class Role
     {
         GetRolePath(5);
         if (curRandomPath == EventRandomPath.None) return;
-        ToiletBatheEffect.Instance.GetEffect(currRandomEvent,curRandomPath);
+        toiletBathe = ToiletBatheEffect.Instance.GetEffect(currRandomEvent,curRandomPath);
         toiletDoorAnim = GameManager.Instance.GetToiletDoorAnim(currRandomEvent, curRandomPath);
         SetAIComponent(false);
         var randomAry = ScenePath.Instance.GetEvent8ToiletPath(curRandomPath);
@@ -878,6 +879,24 @@ public partial class Role
         animator.SetBool(ToAnimatorCondition.ToToilet.ToString(), false);
     }
 
+    private void ShowToiletBatheEffect()
+    {
+        if (toiletBathe != null)
+        {
+            toiletBathe.SetActive(true);
+        }
+        
+    }
+    
+    private void CloseToiletBatheEffect()
+    {
+        if (toiletBathe != null)
+        {
+            toiletBathe.SetActive(false);
+        }
+    }
+    
+    
     #endregion
 
     #region 洗澡
@@ -1068,7 +1087,7 @@ public partial class Role
                 durTime = 0;
                 animator.SetBool(ToAnimatorCondition.ToBatheThree.ToString(), false);
                 animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
-                ToiletBatheEffect.Instance.CloseEffect();
+                CloseToiletBatheEffect();
                 //往门口的点走
                 leaveBatheDoor();
             }
@@ -1134,7 +1153,7 @@ public partial class Role
     {
         GetRolePath(5);
         if (curRandomPath == EventRandomPath.None) return;
-        ToiletBatheEffect.Instance.GetEffect(currRandomEvent,curRandomPath);
+        toiletBathe = ToiletBatheEffect.Instance.GetEffect(currRandomEvent,curRandomPath);
         SetAIComponent(false);
         var randomAry = ScenePath.Instance.GetEvent9BathePath(curRandomPath);
         if (currRandomEventAct == RandomEventAct.Event7Bathe)
@@ -1176,7 +1195,7 @@ public partial class Role
         {
             go.transform.DORotate(new Vector3(0, batheRotate, 0), 0.2f, RotateMode.Fast).onComplete = () =>
             {
-                ToiletBatheEffect.Instance.ShowEffect();
+                ShowToiletBatheEffect();
                 animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), false);
                 animator.SetBool(ToAnimatorCondition.ToBatheThree.ToString(), true);
             };

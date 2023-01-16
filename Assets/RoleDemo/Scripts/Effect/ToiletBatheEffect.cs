@@ -22,23 +22,7 @@ public class ToiletBatheEffect : MonoBehaviour
         Instance = this;
     }
 
-    public void ShowEffect()
-    {
-        if (effect != null)
-        {
-            effect.SetActive(true);
-        }
-    }
-    
-    public void CloseEffect()
-    {
-        if (effect != null)
-        {
-            effect.SetActive(false);
-        }
-    }
-    
-    public void GetEffect(RandomEvent randomEvent,EventRandomPath eventRandomPath)
+    public GameObject GetEffect(RandomEvent randomEvent,EventRandomPath eventRandomPath)
     {
         int index = (int)eventRandomPath;
         switch (randomEvent)
@@ -62,6 +46,7 @@ public class ToiletBatheEffect : MonoBehaviour
                 effect =  Even11BatheList[index - 1];
                 break;
         }
+        return effect;
     }
     
     private void OnDestroy()
