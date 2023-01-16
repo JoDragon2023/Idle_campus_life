@@ -176,6 +176,8 @@ MonoBehaviour:
   role: {fileID: 6607949817327956855}
   nakedOne: {fileID: 5238993652660494065}
   nakedTwo: {fileID: 5019332065807115310}
+  emojiCoolOne: {fileID: 1553787177611896661}
+  emojiCoolTwo: {fileID: 8548221312980360092}
   effect: {fileID: 4094550524652586829}
 --- !u!1001 &3795060533885699287
 PrefabInstance:
@@ -660,6 +662,12 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 7697678858555814412}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1553787177611896661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9170330599185831257, guid: 57244c2ebfc56884bb89315c157e0c76,
+    type: 3}
+  m_PrefabInstance: {fileID: 7697678858555814412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5019332065807115310 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3421497429938787874, guid: 57244c2ebfc56884bb89315c157e0c76,
@@ -669,6 +677,12 @@ GameObject:
 --- !u!95 &7680122716008510663 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 19950398107846347, guid: 57244c2ebfc56884bb89315c157e0c76,
+    type: 3}
+  m_PrefabInstance: {fileID: 7697678858555814412}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8548221312980360092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2049920532993730960, guid: 57244c2ebfc56884bb89315c157e0c76,
     type: 3}
   m_PrefabInstance: {fileID: 7697678858555814412}
   m_PrefabAsset: {fileID: 0}
