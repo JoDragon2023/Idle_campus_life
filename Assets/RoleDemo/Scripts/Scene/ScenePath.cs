@@ -149,6 +149,11 @@ public class ScenePath : MonoBehaviour
     
     private Vector3[] Event12SLaboratoryArry;
     
+    public Transform[] CarPath;
+    
+    private Vector3[] CarPathArry;
+    
+    
     private void Awake()
     {
         Instance = this;
@@ -387,8 +392,14 @@ public class ScenePath : MonoBehaviour
         {
             Event12SLaboratoryArry[i] = Event12Laboratory[i].position;
         }
+        
+        len = CarPath.Length;
+        CarPathArry = new Vector3[len];
+        for (var i = 0; i < len; i++)
+        {
+            CarPathArry[i] = CarPath[i].position;
+        }
     }
-    
     
     
     /// <summary>
