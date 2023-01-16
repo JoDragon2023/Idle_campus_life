@@ -917,12 +917,14 @@ public partial class Role
         {
             animator = roleAnimator.nakedOneAnimator;
             roleAnimator.nakedOne.SetActive(isNaked);
+            roleAnimator.emojiCoolOne.SetActive(isNaked);
             roleAnimator.role.SetActive(!isNaked);
         }
         else if (roleNakedType == 2)
         {
             animator = roleAnimator.nakedTwoAnimator;
             roleAnimator.nakedTwo.SetActive(isNaked);
+            roleAnimator.emojiCoolTwo.SetActive(isNaked);
             roleAnimator.role.SetActive(!isNaked);
         }
 
