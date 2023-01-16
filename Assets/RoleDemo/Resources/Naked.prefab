@@ -438,11 +438,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmojiCool
       objectReference: {fileID: 0}
-    - target: {fileID: 2880518501589945654, guid: 6328df8f7406d4c4a80a6feecb36b34c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7198936949587701982, guid: 6328df8f7406d4c4a80a6feecb36b34c,
         type: 3}
       propertyPath: m_RootOrder
@@ -507,15 +502,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2966977666876077639}
     m_Modifications:
+    - target: {fileID: 1231793094380486444, guid: 6328df8f7406d4c4a80a6feecb36b34c,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2880518501589945654, guid: 6328df8f7406d4c4a80a6feecb36b34c,
         type: 3}
       propertyPath: m_Name
       value: EmojiCool
-      objectReference: {fileID: 0}
-    - target: {fileID: 2880518501589945654, guid: 6328df8f7406d4c4a80a6feecb36b34c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7198936949587701982, guid: 6328df8f7406d4c4a80a6feecb36b34c,
         type: 3}
