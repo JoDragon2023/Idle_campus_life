@@ -12,5 +12,8 @@ public class RoleAnimator : MonoBehaviour
     public GameObject nakedOne;
     public GameObject nakedTwo;
 
+    public GameObject emojiCoolOne;
+    public GameObject emojiCoolTwo;
+    
     public GameObject effect;
 }
