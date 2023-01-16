@@ -936,14 +936,14 @@ public partial class Role
         {
             animator = roleAnimator.nakedOneAnimator;
             roleAnimator.nakedOne.SetActive(isNaked);
-            roleAnimator.emojiCoolOne.SetActive(isNaked);
+            //roleAnimator.emojiCoolOne.SetActive(isNaked);
             roleAnimator.role.SetActive(!isNaked);
         }
         else if (roleNakedType == 2)
         {
             animator = roleAnimator.nakedTwoAnimator;
             roleAnimator.nakedTwo.SetActive(isNaked);
-            roleAnimator.emojiCoolTwo.SetActive(isNaked);
+            //roleAnimator.emojiCoolTwo.SetActive(isNaked);
             roleAnimator.role.SetActive(!isNaked);
         }
 
@@ -1290,6 +1290,7 @@ public partial class Role
                     isSleepThree = true;
                     animator.SetBool(ToAnimatorCondition.ToSleepThree.ToString(), false);
                     animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
+                    roleAnimator.di.SetActive(true);
                     leaveSleep();
                 }
             }
@@ -1411,6 +1412,7 @@ public partial class Role
                 animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), false);
                 animator.SetBool(ToAnimatorCondition.ToSleepOne.ToString(), true);
 
+                roleAnimator.di.SetActive(false);
                 if (bedAnim != null)
                     bedAnim.PlayAnim(BedAnimatorName.BedOne);
             };
