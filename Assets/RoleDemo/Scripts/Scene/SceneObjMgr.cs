@@ -28,6 +28,7 @@ public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
     {
         isUpdate = false;
         CreateRole();
+        CreateRoleVideo();
     }
 
   
@@ -76,6 +77,15 @@ public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
         
         data.pos = ScenePoint.Instance.GetCreatePoint();
         CreateObj(data);
+    }
+    
+    private void CreateRoleVideo()
+    {
+        RoleData data = new RoleData();
+        data.roleId = 99999;
+        data.roleType = RoleType.None;
+        //data.pos = ScenePoint.Instance.GetCreatePoint();
+        var roleVideo = new RoleVideo(data);
     }
 
     private CreateRoleType GetCreateRoleType()
