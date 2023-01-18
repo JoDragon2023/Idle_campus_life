@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Exoa.Events;
 using Pathfinding;
 using Pathfinding.RVO;
 using UnityEngine;
@@ -32,7 +33,6 @@ public partial class Role : BaseObj
     {
         this.roleData = data;
         currRoleType = data.createRoleType;
-
         GameManager.Instance.DoorRaycastEvent += TriggerDoorRayEvent;
 
         InitAttendAct();

@@ -11,7 +11,7 @@ public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
     private float createTime = 2;
     private float durTime;
     private int objIdCount = 0;
-    private int roleCount = 30;
+    private int roleCount = 1;
     private bool isUpdate = false;
     /// <summary>
     /// 是否 开始上课

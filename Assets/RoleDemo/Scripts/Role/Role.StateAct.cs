@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Exoa.Events;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -197,7 +198,6 @@ public partial class Role
     {
         currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         RunAnimatorSetInteger();
-
         //强制 切换到去教室的状态
         if (isCompelLeaveState)
         {
