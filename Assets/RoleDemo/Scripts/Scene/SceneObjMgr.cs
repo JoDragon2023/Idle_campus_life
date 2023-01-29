@@ -28,7 +28,7 @@ public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
     {
         isUpdate = false;
         CreateRole();
-        CreateRoleVideo();
+        //CreateRoleVideo();
     }
 
   

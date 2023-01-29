@@ -25741,7 +25741,7 @@ GameObject:
   - component: {fileID: 165848475416279603}
   - component: {fileID: 4565924707499340034}
   - component: {fileID: 6668056889263632078}
-  - component: {fileID: 3545734804130418124}
+  - component: {fileID: 2657327307897904378}
   m_Layer: 6
   m_Name: RoleVideo
   m_TagString: Player
@@ -25907,7 +25907,7 @@ MonoBehaviour:
   emojiCoolTwo: {fileID: 8845574293509125108}
   effect: {fileID: 8680452392933054163}
   di: {fileID: 5177625494971029052}
---- !u!114 &3545734804130418124
+--- !u!114 &2657327307897904378
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25916,29 +25916,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6783284426202937000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
+  m_Script: {fileID: 11500000, guid: 100073222776c31419ee5257fd39f449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfSelected: 0
-  onSelected:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeselected:
-    m_PersistentCalls:
-      m_Calls: []
-  use: 0
-  onSelectedFinger:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectedFingerUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectedSelectFinger:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectedSelectFingerUp:
-    m_PersistentCalls:
-      m_Calls: []
+  InputSourceOwner: {fileID: 0}
+  Camera: {fileID: 0}
+  UseGamepad: 0
+  MovementRelative: 1
+  MovementSpeed: 3
+  RotationEnabled: 1
+  RotateToInput: 0
+  RotationSpeed: 120
 --- !u!1 &6878694792565186956
 GameObject:
   m_ObjectHideFlags: 0

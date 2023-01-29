@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Exoa.Events;
+//using Exoa.Events;
 using Pathfinding;
 using UnityEngine;
 
@@ -33,7 +33,7 @@ public partial class RoleVideo : BaseObj
     protected override void LoadGoCallBack(GameObject go)
     {
         base.LoadGoCallBack(go);
-        CameraEvents.OnRequestObjectFollow?.Invoke(go, false, false);
+        //CameraEvents.OnRequestObjectFollow?.Invoke(go, false, false);
         animator = go.GetComponentInChildren<Animator>();
         characterController = go.GetComponent<CharacterController>();
         InitState();
