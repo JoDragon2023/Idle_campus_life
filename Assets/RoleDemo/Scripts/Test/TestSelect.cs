@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Exoa.Events;
+//using Exoa.Events;
 using UnityEngine;
 
 public class TestSelect : MonoBehaviour
@@ -15,7 +15,7 @@ public class TestSelect : MonoBehaviour
     void Update()
     {
      
-        CameraEvents.OnRequestObjectFollow?.Invoke(gameObject, true, false);
+        //CameraEvents.OnRequestObjectFollow?.Invoke(gameObject, true, false);
         
     }
 }
