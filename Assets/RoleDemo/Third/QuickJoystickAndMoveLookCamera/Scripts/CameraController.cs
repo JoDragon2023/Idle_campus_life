@@ -19,7 +19,8 @@ public class CameraController : MonoBehaviour, IDragHandler,IPointerDownHandler,
     public float ySpeed = 0.3f;
     public float yMinLimit = -15f;
     public float yMaxLimit = 90f;
-
+    public bool EnabledZoom = true; //是否开始缩放
+    
     private Vector3 pivotOffset; // offset from target's pivot
     private float x = 0;
     private float y = 0;
@@ -105,6 +106,8 @@ public class CameraController : MonoBehaviour, IDragHandler,IPointerDownHandler,
                 secondPointerObj.transform.position = eventData.position;
             }
 
+            if (!EnabledZoom) return;
+            
             float tempDragOffset = Mathf.Abs(firstDragPos.x - secondDragPos.x);
             if (isFirstZoom)
             {
@@ -175,22 +178,22 @@ public class CameraController : MonoBehaviour, IDragHandler,IPointerDownHandler,
         if (firstPointerId == -1)
         {
             firstPointerId = eventData.pointerId;
-            firstPointerObj.SetActive(true);
-            firstPointerObj.transform.position = eventData.position;
-            print("bd=" + eventData.position);
+            // firstPointerObj.SetActive(true);
+            // firstPointerObj.transform.position = eventData.position;
+            //print("bd=" + eventData.position);
 
 
         }
         else if (secondPointerId == -1)
         {
             secondPointerId = eventData.pointerId;
-            secondPointerObj.SetActive(true);
-            secondPointerObj.transform.position = eventData.position;
+            // secondPointerObj.SetActive(true);
+            // secondPointerObj.transform.position = eventData.position;
 
         }
 
 
-        print("pointerDrown=" + eventData.position);
+        //print("pointerDrown=" + eventData.position);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -208,7 +211,7 @@ public class CameraController : MonoBehaviour, IDragHandler,IPointerDownHandler,
         }
 
 
-        print("pointerUp=" + eventData.position);
+        //print("pointerUp=" + eventData.position);
     }
 
 }

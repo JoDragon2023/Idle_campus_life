@@ -17194,6 +17194,7 @@ MonoBehaviour:
   ySpeed: 0.3
   yMinLimit: -15
   yMaxLimit: 90
+  EnabledZoom: 0
 --- !u!114 &986138230
 MonoBehaviour:
   m_ObjectHideFlags: 0
