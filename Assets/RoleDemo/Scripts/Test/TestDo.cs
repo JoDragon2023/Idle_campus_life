@@ -19,7 +19,7 @@ public class TestDo : MonoBehaviour
 
     public void PlayerAnim()
     {
-        transform.DOScale(new Vector3(0.3f, 0.3f, 0.3f), 0.2f).onComplete+= () =>
+        transform.DOScale(new Vector3(0.3f, 0.3f, 0.3f), 0.1f).onComplete+= () =>
         {
             transform.gameObject.SetActive(true);
             
@@ -29,12 +29,12 @@ public class TestDo : MonoBehaviour
             clickTween = DOTween.Sequence();
       
             Vector3 v3Scale1 = new Vector3(0.5f,0.5f,0.5f);
-            Vector3 v3Scale2 = new Vector3(0.8f,0.8f,0.8f);
+            Vector3 v3Scale2 = new Vector3(1.4f,1.4f,1.4f);
             Vector3 v3 = Vector3.one;
         
-            float v3Scale1Time = 0.2f;
-            float v3Scale2Time = 0.2f;
-            float v3Time = 0.2f;
+            float v3Scale1Time = 0.1f;
+            float v3Scale2Time = 0.1f;
+            float v3Time = 0.1f;
             clickTween.Append(transform.DOScale(v3Scale1, v3Scale1Time));
             clickTween.Append(transform.DOScale(v3Scale2, v3Scale2Time));
             clickTween.Append(transform.DOScale(v3, v3Time));
@@ -44,8 +44,6 @@ public class TestDo : MonoBehaviour
             });
             
         };
-
-       
     }
     
 }
