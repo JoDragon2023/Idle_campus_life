@@ -35,7 +35,7 @@ public partial class Role : BaseObj
         currRoleType = data.createRoleType;
         GameManager.Instance.DoorRaycastEvent += TriggerDoorRayEvent;
 
-        InitAttendAct();
+        //InitAttendAct();
        
         var t = GameManager.Instance.roleRoot.transform;
         if (t == null)
@@ -54,6 +54,7 @@ public partial class Role : BaseObj
     private void LoadTarget(GameObject obj)
     {
         aiDestination.target = obj.transform;
+        InitState();
     }
 
     
@@ -82,7 +83,7 @@ public partial class Role : BaseObj
         aiPath = go.GetComponent<AIPath>();
         roleAnimator = go.GetComponent<RoleAnimator>();
         //rvoController = go.GetComponent<RVOController>();
-        InitState();
+     
     }
 
     private void InitAttendAct()

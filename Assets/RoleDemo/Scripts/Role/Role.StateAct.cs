@@ -15,7 +15,7 @@ public partial class Role
     /// <summary>
     /// 当前 随机的行为
     /// </summary>
-    public RandomEventAct currRandomEventAct = RandomEventAct.Main;
+    public RandomEventAct currRandomEventAct = RandomEventAct.Event2AttendClass;
 
     /// <summary>
     /// 当前 随机的路径

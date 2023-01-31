@@ -239,7 +239,7 @@ public partial class Role : IStateMachineObj
         }
 
         var index = Random.Range(0, randomEvent.Count);
-        //return (int)RandomEvent.Event11;
+        return (int)RandomEvent.Event2;
         return randomEvent[index];
     }
 
@@ -260,7 +260,7 @@ public partial class Role : IStateMachineObj
                 break;
             case RandomEvent.Event2:
                 randomEventList.Add((int)RandomEventAct.Event2AttendClass);
-                randomEventList.Add((int)RandomEventAct.Event2Stand);
+                //randomEventList.Add((int)RandomEventAct.Event2Stand);
                 break;
             case RandomEvent.Event3:
                 randomEventList.Add((int)RandomEventAct.Event3Sleep);

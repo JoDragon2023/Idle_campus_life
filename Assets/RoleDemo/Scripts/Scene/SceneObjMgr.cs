@@ -8,11 +8,11 @@ public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
     public List<Role> roleList;   
     public List<Role> roleClassList;   
     public List<BaseObj> objList;
-    private float createTime = 2;
+    private float createTime = 1f;
     private float durTime;
     private int objIdCount = 0;
-    private int roleCount = 1;
-    private bool isUpdate = false;
+    private int roleCount = 4;
+    private bool isUpdate = true;
     /// <summary>
     /// 是否 开始上课
     /// </summary>
@@ -26,12 +26,17 @@ public class SceneObjMgr : MonoSingleton<SceneObjMgr>,IDisposable
 
     public void Init()
     {
-        isUpdate = false;
-        CreateRole();
+        isUpdate = true;
+        //CreateRole();
         //CreateRoleVideo();
     }
 
-  
+    public void CreateRoleAct()
+    {
+        isUpdate = false;
+        CreateRole();
+    }
+    
     private void Update()
     {
         if (!isUpdate)

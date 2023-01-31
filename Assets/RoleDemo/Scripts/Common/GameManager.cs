@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
     private ToiletDoorAnim[] toiletDoorAnim;
     public Action<DoorAnim, Collider> DoorRaycastEvent;
 
+    public float CreateRoleTime = 1f;
+    
     private void Awake()
     {
         Instance = this;

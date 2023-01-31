@@ -23,7 +23,11 @@ public class DoorAnim : MonoBehaviour
     
     public void OpenAnim()
     {
-        if (isOpen) return;
+        if (isOpen)
+        {
+            CloseAnim();
+            return;
+        }
         
         rotate = 120;
         GetEventAnimRotate();
@@ -75,7 +79,6 @@ public class DoorAnim : MonoBehaviour
     
     public void CloseAnim()
     {
-        if (!isOpen) return;
         
         rotate = 0;
         if (doorAnimType == DoorAnimType.Classroom)
