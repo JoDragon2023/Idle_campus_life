@@ -11,19 +11,23 @@ public class PlayerController : MonoBehaviour, IDragHandler, IBeginDragHandler, 
     public RectTransform background;
     public RectTransform pointer;
     public float moveSpeed = 4f;
-
+    
     private CharacterController playerCC;
     private Transform cameraTransform;
     private Vector2 centerPos;
     private Vector2 beginPos;
     private Vector2 dragPos;
     private float r;
-    private Animation anim;
-
+    private Animator animator;
+    /// <summary>
+    /// 当前动画状态信息
+    /// </summary>
+    private AnimatorStateInfo currRoleAnimatorStateInfo { get; set; }
+    
     private void Start()
     {
-        anim = player.GetComponent<Animation>();
-
+        //anim = player.GetComponent<Animation>();
+        animator = player.GetComponentInChildren<Animator>();
         transform.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.height * 0.5f, Screen.height * 0.5f);
         background.sizeDelta = new Vector2(Screen.height, Screen.height) * 0.25f;
         pointer.sizeDelta = background.sizeDelta * 0.45f;
@@ -50,7 +54,6 @@ public class PlayerController : MonoBehaviour, IDragHandler, IBeginDragHandler, 
 
     private void FixedUpdate()
     {
-       
         if (Vector2.Distance(dragPos, beginPos) > 10) // joystick move
         {
             Vector2 v2 = (dragPos - beginPos).normalized;
@@ -59,21 +62,37 @@ public class PlayerController : MonoBehaviour, IDragHandler, IBeginDragHandler, 
             playerCC.transform.eulerAngles = new Vector3(0, cameraTransform.eulerAngles.y + angle, 0);
             playerCC.Move(player.forward * Time.deltaTime * moveSpeed);
 
-            if (anim)//your ainmation set
+            if (animator != null)//your ainmation set
             {
-                anim.CrossFade("forward");
+                animator.SetBool(ToAnimatorCondition.ToWalk_02.ToString(), true);
+                animator.SetBool(ToAnimatorCondition.ToStand.ToString(), false);
+                //anim.CrossFade("forward");
             }
         }
         else // joystick stop
         {
-
-
-            if (anim)//your ainmation set
+            if (animator != null)//your ainmation set
             {
-                anim.CrossFade("standing");
+                animator.SetBool(ToAnimatorCondition.ToWalk_02.ToString(), false);
+                animator.SetBool(ToAnimatorCondition.ToStand.ToString(), true);
+                //anim.CrossFade("standing");
             }
         }
 
+        if (animator != null)
+        {
+            currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Stand.ToString()))
+            {
+                animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Stand);
+            }
+
+            if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Walk_02.ToString()))
+            {
+                animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
+            }
+        }
+        
         //Simulated drop
         if (!playerCC.isGrounded)
         {
