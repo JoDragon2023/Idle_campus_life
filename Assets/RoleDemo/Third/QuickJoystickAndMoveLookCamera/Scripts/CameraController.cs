@@ -164,7 +164,7 @@ public class CameraController : MonoBehaviour, IDragHandler,IPointerDownHandler,
         Quaternion rotation = Quaternion.Euler(y, x, 0);
 
         distance = Mathf.SmoothDamp(distance, targetDistance, ref zoomVelocity, 0.3f);
-        Vector3 position = rotation * new Vector3(0.0f, 0.0f, -distance) + player.position + pivotOffset;
+        Vector3 position = rotation * new Vector3(0.0f, 1f, -distance) + player.position + pivotOffset;
         cameraTransform.rotation = rotation;
 
         if (position != cameraTransform.position)

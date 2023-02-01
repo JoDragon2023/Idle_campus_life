@@ -20,20 +20,20 @@ public class TestTrigger : MonoBehaviour
 
     private  List<TestSequence> sequenceEventList = new List<TestSequence>();
 
-    private float seat1Time = 1;
-    private float seat2Time = 1;
-    private float seat3Time = 1;
-    private float seat4Time = 1;
+    private float seat1Time = 0.8f;
+    private float seat2Time = 0.7f;
+    private float seat3Time = 0.6f;
+    private float seat4Time = 0.5f;
     
-    private float decorate1Time = 0.5f;
-    private float decorate2Time = 0.5f;
-    private float decorate3Time = 0.5f;
-    private float decorate4Time = 0.5f;
-    private float decorate5Time = 0.5f;
-    private float decorate6Time = 0.5f;
-    private float decorate7Time = 0.5f;
-    private float decorate8Time = 0.5f;
-    private float decorate9Time = 0.5f;
+    private float decorate1Time = 0.4f;
+    private float decorate2Time = 0.3f;
+    private float decorate3Time = 0.3f;
+    private float decorate4Time = 0.2f;
+    private float decorate5Time = 0.1f;
+    private float decorate6Time = 0.1f;
+    private float decorate7Time = 0.1f;
+    private float decorate8Time = 0.1f;
+    private float decorate9Time = 0.1f;
     
     private void Start()
     {
