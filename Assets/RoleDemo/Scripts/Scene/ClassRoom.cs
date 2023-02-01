@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClassRoom : MonoBehaviour
 {
-    public List<GameObject> classRoomList = new List<GameObject>();
+    public List<GameObject> classRoomList;
     public DoorAnim doorAnim;
     
 }
