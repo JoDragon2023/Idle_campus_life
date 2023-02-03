@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -64,9 +65,23 @@ public class GameManager : MonoBehaviour
     public DoorEvent[] doorEventAry;
    
     private BedAnim[] bedAniAry;
+    private LaboratoryAnim[] LaboratoryAnimAry;
     private ToiletDoorAnim[] toiletDoorAnim;
-    public Action<DoorAnim, Collider> DoorRaycastEvent;
+    public  Action<DoorAnim, Collider> DoorRaycastEvent;
 
+
+    public Action btnRightAct;
+    
+    public Action btnMiddleAct;
+    
+    public Action btnLeftAct;
+    
+    public Button btnRight;
+    
+    public Button btnMiddle;
+    
+    public Button btnLeft;
+    
     private void Awake()
     {
         Instance = this;
@@ -84,7 +99,26 @@ public class GameManager : MonoBehaviour
 
         doorEventAry =  Resources.FindObjectsOfTypeAll<DoorEvent>();
         bedAniAry =  Resources.FindObjectsOfTypeAll<BedAnim>();
+        LaboratoryAnimAry =  Resources.FindObjectsOfTypeAll<LaboratoryAnim>();
         toiletDoorAnim =  Resources.FindObjectsOfTypeAll<ToiletDoorAnim>();
+        btnRight.onClick.AddListener(OnBtnRight);
+        btnMiddle.onClick.AddListener(OnBtnMiddle);
+        btnLeft.onClick.AddListener(OnBtnLeft);
+    }
+
+    private void OnBtnRight()
+    {
+        btnRightAct?.Invoke();
+    }
+    
+    private void OnBtnMiddle()
+    {
+        btnMiddleAct?.Invoke();
+    }
+    
+    private void OnBtnLeft()
+    {
+        btnLeftAct?.Invoke();
     }
 
     void Start()
@@ -195,6 +229,25 @@ public class GameManager : MonoBehaviour
 
         return null;
     }
+    
+    /// <summary>
+    /// 获取科学实验室动画
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public LaboratoryAnim GetLaboratoryAnim(EventRandomPath path)
+    {
+        for (var i = 0; i < LaboratoryAnimAry.Length; i++)
+        {
+            if (LaboratoryAnimAry[i].eventRandomPath == path)
+            {
+                return LaboratoryAnimAry[i];
+            }
+        }
+
+        return null;
+    }
+    
     
     /// <summary>
     /// 获取厕所门 动画对象

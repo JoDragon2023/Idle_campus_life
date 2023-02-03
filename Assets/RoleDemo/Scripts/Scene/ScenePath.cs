@@ -424,6 +424,32 @@ public class ScenePath : MonoBehaviour
         return pos;
     }
     
+  
+    /// <summary>
+    /// 事件12  科学实验路线
+    /// </summary>
+    /// <returns></returns>
+    public Vector3[] GeEvent12LaboratoryPathVoide(EventRandomPath sitRandom)
+    {
+        List<Vector3> pathList = new List<Vector3>();
+        switch (sitRandom)
+        {
+            case EventRandomPath.Path1:
+                pathList.Add(Event12SLaboratoryArry[0]);
+                pathList.Add(Event12SLaboratoryArry[3]);
+                pathList.Add(Event12SLaboratoryArry[5]);
+                break;
+            case EventRandomPath.Path2:
+                pathList.Add(Event12SLaboratoryArry[0]);
+                pathList.Add(Event12SLaboratoryArry[6]);
+                pathList.Add(Event12SLaboratoryArry[7]);
+                break;
+        }
+        
+        return pathList.ToArray();
+    }
+    
+    
     /// <summary>
     /// 事件12  科学实验路线
     /// </summary>

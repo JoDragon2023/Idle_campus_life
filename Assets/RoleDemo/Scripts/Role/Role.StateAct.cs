@@ -129,6 +129,7 @@ public partial class Role
             case RandomEventAct.Event9Bathe:
             case RandomEventAct.Event10Toilet:
             case RandomEventAct.Event11Bathe:
+            case RandomEventAct.Event12Laboratory:
                 currRandomTarget = ScenePoint.Instance.GetRandomEventActPoint(currRandomEventAct);
                 SetTargetPos(currRandomTarget);
                 SetAIComponent(true);
@@ -305,6 +306,9 @@ public partial class Role
                 break;
             case RandomEventAct.Event11Bathe:
                 SMachine.TranslateState(RoleState.Bathe);
+                break;
+            case RandomEventAct.Event12Laboratory:
+                SMachine.TranslateState(RoleState.Laboratory);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -2154,6 +2158,143 @@ public partial class Role
 
     #endregion
 
+    #region 科学实验室
+    
+    private Vector3[] currEventLaboratoryPathPath;
+    private bool isleaveLaboratory = false;
+    private bool isUpdateLaboratory = false;
+    private int laboratoryRotate = 90;
+    private float laboratoryTime = 1f;
+    private string laboratoryAnim;
+    private LaboratoryAnim currLaboratoryAnim;
+    public void EnterLaboratoryAct()
+    {
+        isleaveLaboratory= false;
+        isUpdateLaboratory = false;
+        isPathLeaveState = false;
+        durTime = 0;
+        GetLaboratoryPath();
+        EntryLaboratory();
+    }
+
+    public void UpdateLaboratoryAct(float deltaTime)
+    {
+        if (curRandomPath == EventRandomPath.None)
+        {
+            if (!isPathLeaveState)
+            {
+                isPathLeaveState = true;
+                leaveLaboratory();
+                return;
+            }
+        }
+        
+        currRoleAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.StudentHammer.ToString()))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.StudentHammer);
+            
+            if (currRoleAnimatorStateInfo.normalizedTime > 1)
+            {
+                if (!isleaveLaboratory)
+                {
+                    isleaveLaboratory = true;
+                    leaveLaboratory();
+                }
+            }
+        }
+        
+        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.StudentMicroscope.ToString()))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.StudentMicroscope);
+            
+            if (currRoleAnimatorStateInfo.normalizedTime > 1)
+            {
+                if (!isleaveLaboratory)
+                {
+                    isleaveLaboratory = true;
+                    leaveLaboratory();
+                }
+            }
+        }
+
+        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Walk_01.ToString()))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
+        }
+    }
+
+    private void EntryLaboratory()
+    {
+        if (curRandomPath == EventRandomPath.None) return;
+
+        laboratoryAnim = ToAnimatorCondition.ToStudentHammer.ToString();
+        laboratoryTime = 4f;
+        laboratoryRotate = 232;
+        
+        currLaboratoryAnim = GameManager.Instance.GetLaboratoryAnim(curRandomPath);
+        if (curRandomPath == EventRandomPath.Path2)
+        {
+            laboratoryAnim = ToAnimatorCondition.ToStudentMicroscope.ToString();
+            laboratoryTime = 2f;
+            laboratoryRotate = 180;
+        }
+
+        SetAIComponent(false);
+        animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
+        go.transform.DOPath(currEventLaboratoryPathPath, laboratoryTime, PathType.CatmullRom).SetEase(Ease.Linear)
+            .SetLookAt(0).onComplete = () =>
+        {
+            go.transform.DORotate(new Vector3(0, laboratoryRotate, 0), 0.2f, RotateMode.Fast).onComplete = () =>
+            {
+                animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), false);
+                animator.SetBool(laboratoryAnim, true);
+                
+                if (currLaboratoryAnim != null)
+                    currLaboratoryAnim.PlayAnim();
+                
+                isUpdateLaboratory = true;
+            };
+        };
+    }
+
+    private void leaveLaboratory()
+    {
+        if (currLaboratoryAnim != null)
+        {
+            currLaboratoryAnim.CloseAnim();
+        }
+        
+        animator.SetBool(laboratoryAnim, false);
+        animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), true);
+        var leavePoint = ScenePoint.Instance.GetRandomEventActPoint(RandomEventAct.Event12Laboratory);
+        go.transform
+            .DOPath(ScenePath.Instance.GetBackPath(currEventLaboratoryPathPath, leavePoint), laboratoryTime, PathType.CatmullRom)
+            .SetEase(Ease.Linear)
+            .SetLookAt(0).onComplete = () =>
+        {
+            animator.SetBool(ToAnimatorCondition.ToWalk_01.ToString(), false);
+            currRandomEventAct = RandomEventAct.Idle;
+            GetAllRandom();
+            SMachine.TranslateState(RoleState.Run);
+        };
+    }
+
+    // ReSharper disable Unity.PerformanceAnalysis
+    private void GetLaboratoryPath()
+    {
+        GetRolePath(3);
+        if (curRandomPath == EventRandomPath.None) return;
+        var randomArry = ScenePath.Instance.GeEvent12LaboratoryPathVoide(curRandomPath);
+        currEventLaboratoryPathPath = randomArry;
+    }
+
+    public void ExitLaboratoryAct()
+    {
+        
+    }
+    #endregion
+    
     #region 交谈状态
 
     public void EnterTalk()

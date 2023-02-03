@@ -46,6 +46,7 @@ public class DoorAnim : MonoBehaviour
             case RandomEvent.Event2:
                 break;
             case RandomEvent.Event3:
+            case RandomEvent.Event12:
                 rotate = 25;
                 break;
             case RandomEvent.Event4:

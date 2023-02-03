@@ -333,7 +333,8 @@ public class ScenePoint : MonoBehaviour
     {
         var randomInfoDic = new Dictionary<int, Vector3>();
 
-        var randomId = RoleIdleAndEvenRandom();
+        //var randomId = RoleIdleAndEvenRandom();
+        var randomId = 18;
         
         if (randomInfoDic.ContainsKey(randomId))
         {

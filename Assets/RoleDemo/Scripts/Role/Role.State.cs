@@ -59,6 +59,7 @@ public partial class Role : IStateMachineObj
         var switchDoor = new SwitchDoorState(EnterSwitchDoorAct, ExitSwitchDoorAct, UpdateSwitchDoorAct);
         var sleep = new SleepState(EnterSleepAct, ExitSleepAct, UpdateSleepAct);
         var goToClass = new GoToClassState(EnterGoToClassAct, ExitGoToClassAct, UpdateGoToClassAct);
+        var laboratory = new LaboratoryState(EnterLaboratoryAct, ExitLaboratoryAct, UpdateLaboratoryAct);
         stateMachine = new StateMachine(idle);
         stateMachine.InitState(run);
         stateMachine.InitState(talk);
@@ -74,6 +75,7 @@ public partial class Role : IStateMachineObj
         stateMachine.InitState(switchDoor);
         stateMachine.InitState(sleep);
         stateMachine.InitState(goToClass);
+        stateMachine.InitState(laboratory);
 
         //
         // switch (currRoleType)
@@ -239,7 +241,7 @@ public partial class Role : IStateMachineObj
         }
 
         var index = Random.Range(0, randomEvent.Count);
-        //return (int)RandomEvent.Event11;
+        return (int)RandomEvent.Event12;
         return randomEvent[index];
     }
 
@@ -290,6 +292,9 @@ public partial class Role : IStateMachineObj
                 break;
             case RandomEvent.Event11:
                 randomEventList.Add((int)RandomEventAct.Event11Bathe);
+                break;
+            case RandomEvent.Event12:
+                randomEventList.Add((int)RandomEventAct.Event12Laboratory);
                 break;
         }
 

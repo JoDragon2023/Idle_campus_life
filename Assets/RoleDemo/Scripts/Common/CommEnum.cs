@@ -165,6 +165,7 @@ public enum RandomEvent
     Event9,
     Event10,
     Event11,
+    Event12,
 }
 
 /// <summary>
@@ -346,6 +347,8 @@ public enum ToAnimatorCondition
     ToBatheFour,
     ToTeacherLecture,
     ToShakeHead,
+    ToStudentHammer,
+    ToStudentMicroscope,
     ToSleepIdle,
     CurrState
 }
@@ -410,6 +413,8 @@ public enum RoleAnimatorName
     BatheFour,
     TeacherLecture,
     ShakeHead,
+    StudentHammer,
+    StudentMicroscope,
     SleepIdle,
 }
 
@@ -489,6 +494,10 @@ public enum RoleAniState
     /// 床上待机动画
     /// </summary>
     SleepIdle = 22,
+    //科学实验室
+    StudentHammer = 23,
+    //科学实验室放大镜
+    StudentMicroscope = 24,
 }
 
 public enum EventRandomPath
@@ -599,6 +608,10 @@ public enum RoleState
     /// <summary>
     /// 站立
     /// </summary>
-    Stand
+    Stand,
+    /// <summary>
+    /// 科学实验室
+    /// </summary>
+    Laboratory,
 }
 
