@@ -9,34 +9,6 @@ public class PlayRoleBatheAnim : MonoBehaviour
     private AnimatorStateInfo currRoleAnimatorStateInfo { get; set; }
     private Animator animator;
     private float startTime = 0.2f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        animator = transform.GetComponentInChildren<Animator>();
-        roleAnimator = transform.GetComponent<RoleAnimator>();
-        animator.SetBool(ToAnimatorCondition.ToStand.ToString(), true);
-        switch (curRandomPath)
-        {
-            case EventRandomPath.Path2:
-                startTime = 0.5f;
-                roleNakedType = 1;
-                break;
-            case EventRandomPath.Path3:
-                startTime = 1f;
-                roleNakedType = 2;
-                break;
-        }
-        
-        transform.DOScale(Vector3.one, startTime).onComplete = () => { EnterBatheAct();};
-    }
-
-    
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateBatheAct(Time.deltaTime);
-    }
-    
     private bool isBatheOne = false;
     private bool isBatheTwo = false;
     private bool isBatheThree = false;
@@ -59,6 +31,34 @@ public class PlayRoleBatheAnim : MonoBehaviour
     private GameObject toiletBathe;
     //继续播放动画 间隔时间
     private float loopAnimTime = 2f;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        animator = transform.GetComponentInChildren<Animator>();
+        roleAnimator = transform.GetComponent<RoleAnimator>();
+        animator.SetBool(ToAnimatorCondition.ToStand.ToString(), true);
+        switch (curRandomPath)
+        {
+            case EventRandomPath.Path2:
+                startTime = 0.5f;
+                roleNakedType = 1;
+                break;
+            case EventRandomPath.Path3:
+                startTime = 1f;
+                roleNakedType = 2;
+                break;
+        }
+        
+        transform.DOScale(Vector3.one, startTime).onComplete = () => { EnterBatheAct();};
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        UpdateBatheAct(Time.deltaTime);
+    }
+ 
     public void EnterBatheAct()
     {
         isBatheOne = false;

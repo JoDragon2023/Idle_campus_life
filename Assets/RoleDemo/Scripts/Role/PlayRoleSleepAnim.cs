@@ -110,6 +110,11 @@ public class PlayRoleSleepAnim : MonoBehaviour
             }
         }
 
+        if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Stand.ToString()))
+        {
+            animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Stand);
+        }
+        
         if (currRoleAnimatorStateInfo.IsName(RoleAnimatorName.Walk_01.ToString()))
         {
             animator.SetInteger(ToAnimatorCondition.CurrState.ToString(), (int)RoleAniState.Run);
@@ -184,6 +189,8 @@ public class PlayRoleSleepAnim : MonoBehaviour
     
     private void EnterSleep()
     {
+        animator.SetBool(ToAnimatorCondition.ToStand.ToString(), false);
+        bedAnim = GameManager.Instance.GetBedAnim(EventRandomPath.Path1);
         //第一步 播放上床动画
         animator.SetBool(ToAnimatorCondition.ToSleepOne.ToString(), true);
         di.SetActive(false);
@@ -193,6 +200,11 @@ public class PlayRoleSleepAnim : MonoBehaviour
 
     private void LoopPlayAnim()
     {
-        transform.DOScale(Vector3.one, loopAnimTime).onComplete = () => { EnterSleepAct();};
+        
+        transform.DORotate(new Vector3(0,180,0), 0.2f, RotateMode.Fast).onComplete = () =>
+        {
+            animator.SetBool(ToAnimatorCondition.ToStand.ToString(), true);
+            transform.DOScale(Vector3.one, loopAnimTime).onComplete = () => { EnterSleepAct();};
+        };
     }
 }
