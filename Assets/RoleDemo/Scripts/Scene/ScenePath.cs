@@ -938,6 +938,13 @@ public class ScenePath : MonoBehaviour
         return pos;
     }
     
+    public Vector3[] GetEventToiletActPointTwo(Vector3[] path)
+    {
+        Vector3[] pos = new Vector3[1];
+        pos[0] = path[path.Length - 2];
+        return pos;
+    }
+    
     public Vector3[] GetBackBathePath(Vector3[] pathArry, Vector3 target)
     {
         Vector3[] pos = new Vector3[pathArry.Length];

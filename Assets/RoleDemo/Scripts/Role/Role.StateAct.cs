@@ -342,7 +342,7 @@ public partial class Role
     private Vector3[] currEventSitPath;
     private int sitRotate = 180;
     private float sitTime = 0;
-    private float nextSitTime = 4;
+    private float nextSitTime = 2.5f;
     private bool isEventSit = false;
     private bool isleaveSit = false;
 
@@ -402,7 +402,8 @@ public partial class Role
     // ReSharper disable Unity.PerformanceAnalysis
     private void GetSitPath()
     {
-        GetRolePath(4);
+        //GetRolePath(4);
+        curRandomPath = EventRandomPath.Path2;
         if (curRandomPath == EventRandomPath.None) return;
 
         Vector3[] randomArry = null;
@@ -428,7 +429,7 @@ public partial class Role
                     break;
                 case EventRandomPath.Path2:
                     sitRotate = 0;
-                    sitTime = 5f;
+                    sitTime = 3f;
                     break;
                 case EventRandomPath.Path3:
                     sitRotate = 180;
@@ -599,7 +600,7 @@ public partial class Role
     private Vector3[] currEventEatDrinkPath;
     private bool isleaveEatDrink = false;
     private int eatDrinkRotate = 90;
-    private float eatDrinkTime = 1f;
+    private float eatDrinkTime = 3f;
 
     public void EnterEatDrinkAct()
     {
@@ -679,7 +680,8 @@ public partial class Role
     // ReSharper disable Unity.PerformanceAnalysis
     private void GetEatDrinkPath()
     {
-        GetRolePath(3);
+        //GetRolePath(3);
+        curRandomPath = EventRandomPath.Path2;
         if (curRandomPath == EventRandomPath.None) return;
         currEventEatDrinkPath = ScenePath.Instance.GetEvent1EatDrinkPath(curRandomPath);
     }

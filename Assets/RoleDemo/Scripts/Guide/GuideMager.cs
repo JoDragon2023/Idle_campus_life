@@ -62,7 +62,7 @@ public class GuideMager : MonoBehaviour
 
     void Start()
     {
-        StartGuide();
+        //StartGuide();
     }
 
     private void Update()

@@ -40,6 +40,7 @@ public partial class Role : IStateMachineObj
     private void InitState()
     {
         InitStateMachine();
+        InitBtnAct();
     }
 
     private void InitStateMachine()
@@ -241,9 +242,80 @@ public partial class Role : IStateMachineObj
         }
 
         var index = Random.Range(0, randomEvent.Count);
-        return (int)RandomEvent.Event12;
+        return (int)SceneObjMgr.Instance.createRandomEvent;
         return randomEvent[index];
     }
+
+    private void InitBtnAct()
+    {
+        RoleActEvent.Instance.BtnSleepAct += OnBtnSleepAct;
+        RoleActEvent.Instance.BtnRestAreaAct += OnBtnRestAreaAct;
+        RoleActEvent.Instance.BtnToiletAct += OnBtnToiletAct;
+        RoleActEvent.Instance.BtnBatheAct += OnBtnBatheAct;
+        RoleActEvent.Instance.BtnLibraryAct += OnBtnLibraryAct;
+        RoleActEvent.Instance.BtnLaboratoryAct += OnBtnLaboratoryAct;
+    }
+
+    private void RestBtnAct()
+    {
+        RoleActEvent.Instance.BtnSleepAct -= OnBtnSleepAct;
+        RoleActEvent.Instance.BtnRestAreaAct -= OnBtnRestAreaAct;
+        RoleActEvent.Instance.BtnToiletAct -= OnBtnToiletAct;
+        RoleActEvent.Instance.BtnBatheAct -= OnBtnBatheAct;
+        RoleActEvent.Instance.BtnLibraryAct -= OnBtnLibraryAct;
+        RoleActEvent.Instance.BtnLaboratoryAct -= OnBtnLaboratoryAct;
+    }
+
+    private RandomEvent actRandomEvent = RandomEvent.Event2;
+    
+    /// <summary>
+    /// 科学实验室
+    /// </summary>
+    private void OnBtnLaboratoryAct()
+    {
+        actRandomEvent = RandomEvent.Event12;
+    }
+    
+    /// <summary>
+    /// 图书馆
+    /// </summary>
+    private void OnBtnLibraryAct()
+    {
+        actRandomEvent = RandomEvent.Event2;
+    }
+
+    /// <summary>
+    /// 洗澡
+    /// </summary>
+    private void OnBtnBatheAct()
+    {
+        actRandomEvent = RandomEvent.Event9;
+    }
+
+    /// <summary>
+    /// 上厕所
+    /// </summary>
+    private void OnBtnToiletAct()
+    {
+        actRandomEvent = RandomEvent.Event8;
+    }
+
+    /// <summary>
+    /// 休息区
+    /// </summary>
+    private void OnBtnRestAreaAct()
+    {
+        actRandomEvent = RandomEvent.Event1;
+    }
+    
+    /// <summary>
+    /// 睡觉
+    /// </summary>
+    private void OnBtnSleepAct()
+    {
+        actRandomEvent = RandomEvent.Event3;
+    }
+
 
     /// <summary>
     /// 根据随机事件 获取随机行为
@@ -257,12 +329,18 @@ public partial class Role : IStateMachineObj
             case RandomEvent.None:
                 break;
             case RandomEvent.Event1:
-                randomEventList.Add((int)RandomEventAct.Event1Sit);
-                randomEventList.Add((int)RandomEventAct.Event1EatDrink);
+                if (go.name == "Role9(Clone)")
+                {
+                    randomEventList.Add((int)RandomEventAct.Event1Sit);
+                }
+                else
+                {
+                    randomEventList.Add((int)RandomEventAct.Event1EatDrink);
+                }
                 break;
             case RandomEvent.Event2:
                 randomEventList.Add((int)RandomEventAct.Event2AttendClass);
-                randomEventList.Add((int)RandomEventAct.Event2Stand);
+                //randomEventList.Add((int)RandomEventAct.Event2Stand);
                 break;
             case RandomEvent.Event3:
                 randomEventList.Add((int)RandomEventAct.Event3Sleep);
@@ -273,7 +351,7 @@ public partial class Role : IStateMachineObj
                 break;
             case RandomEvent.Event5:
                 randomEventList.Add((int)RandomEventAct.Event5Sleep);
-                randomEventList.Add((int)RandomEventAct.Event5SwitchDoor);
+                //randomEventList.Add((int)RandomEventAct.Event5SwitchDoor);
                 break;
             case RandomEvent.Event6:
                 randomEventList.Add((int)RandomEventAct.Event6Toilet);

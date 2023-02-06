@@ -248,6 +248,7 @@ public partial class Role : BaseObj
         
         base.OnDelete();
         ReleaseState();
+        RestBtnAct();
     }
     
 }

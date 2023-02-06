@@ -215,6 +215,10 @@ public enum RandomEventAct
     /// </summary>
     Event4AttendClass,
     /// <summary>
+    /// 事件4  老师在讲台讲课
+    /// </summary>
+    Event4TeacherAttendClass,
+    /// <summary>
     /// 事件5 睡觉  随机一个床位
     /// </summary>
     Event5Sleep,
@@ -250,6 +254,13 @@ public enum RandomEventAct
     /// 科学实验室
     /// </summary>
     Event12Laboratory,
+    
+    /// <summary>
+    /// 科学实验室
+    /// </summary>
+    Event12LaboratoryStudentHammer,
+    
+    Event12LaboratoryMicroscope,
 }
 
 /// <summary>

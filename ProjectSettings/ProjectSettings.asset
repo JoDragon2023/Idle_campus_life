@@ -259,14 +259,14 @@ PlayerSettings:
   AndroidSplashScreenScale: 2
   androidSplashScreen: {fileID: 2800000, guid: c926f6819c202974a8c16e2f5c7d971c, type: 3}
   AndroidKeystoreName: '{inproject}: campus.keystore'
-  AndroidKeyaliasName: campus
+  AndroidKeyaliasName: Debug
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 1
+  androidUseCustomKeystore: 0
   m_AndroidBanners:
   - width: 320
     height: 180
