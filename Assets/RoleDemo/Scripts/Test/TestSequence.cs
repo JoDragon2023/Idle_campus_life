@@ -7,9 +7,22 @@ using UnityEngine;
 public class TestSequence : MonoBehaviour
 {     
     private Sequence clickTween;
-
+    public GameObject effect;
+    [HideInInspector]
+    public GameObject role;
+    
     public void PlayerAnim()
     {
+        role.transform.DOScale(Vector3.one, 0f).onComplete += () =>
+        {
+            effect.gameObject.SetActive(true);
+        };
+        
+        role.transform.DOScale(Vector3.one, 0.9f).onComplete += () =>
+        {
+            effect.gameObject.SetActive(true);
+        };
+        
         transform.DOScale(new Vector3(0.3f, 0.3f, 0.3f), 0.1f).onComplete+= () =>
         {
             transform.gameObject.SetActive(true);
@@ -33,7 +46,6 @@ public class TestSequence : MonoBehaviour
             {
                 clickTween = null;
             });
-            
         };
     }
     private void Awake()

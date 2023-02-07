@@ -39,6 +39,7 @@ public class TestTrigger : MonoBehaviour
     {
         for (int i = 0; i < classRoom.classRoomList.Count ; i++)
         {
+            classRoom.classRoomList[i].GetComponent<TestSequence>().role = gameObject;
             sequenceEventList.Add(classRoom.classRoomList[i].GetComponent<TestSequence>());
         }
     }
