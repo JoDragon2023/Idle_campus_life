@@ -12,11 +12,16 @@ public class TestTrigger : MonoBehaviour
     private float idleTime = 3;
     private float durTime;
     
+    private float idleEffectTime = 2.5f;
+    private float durEffectTime;
+    
+    
     private float durupdateTime;
     private int id = 0;
     public Action CreateAct;
     private bool isCreate = false;
     private bool isUpdate = false;
+    private bool isEffect = false;
 
     private  List<TestSequence> sequenceEventList = new List<TestSequence>();
 
@@ -35,8 +40,27 @@ public class TestTrigger : MonoBehaviour
     private float decorate8Time = 0.1f;
     private float decorate9Time = 0.1f;
     
+    // 烟雾特效显示 效果参数
+    private float seatEffect1Time = 0.6f;
+    private float seatEffect2Time = 0.5f;
+    private float seatEffect3Time = 0.4f;
+    private float seatEffect4Time = 0.3f;
+    
+    private float decorateEffect1Time = 0.2f;
+    private float decorateEffect2Time = 0.1f;
+    private float decorateEffect3Time = 0.1f;
+    private float decorateEffect4Time = 0.1f;
+    private float decorateEffect5Time = 0.1f;
+    private float decorateEffect6Time = 0.1f;
+    private float decorateEffect7Time = 0.1f;
+    private float decorateEffect8Time = 0.1f;
+    private float decorateEffect9Time = 0.1f;
+    
+    
+    
     private void Start()
     {
+        isEffect = false;
         for (int i = 0; i < classRoom.classRoomList.Count ; i++)
         {
             classRoom.classRoomList[i].GetComponent<TestSequence>().role = gameObject;
@@ -59,11 +83,6 @@ public class TestTrigger : MonoBehaviour
 
     private void Show()
     {
-        // for (int i = 0; i < sequenceEventList.Count; i++)
-        // {
-        //     sequenceEventList[i].Show();
-        // }
-
         //第一个座位出现事件
         transform.DOScale(Vector3.one, seat1Time).onComplete = () =>
         {
@@ -84,7 +103,7 @@ public class TestTrigger : MonoBehaviour
                     
                         //第四个座位 出现
                         isUpdate = true;
-
+                        ShowDecorateEffect();
                         ShowDecorate();
                     };
                 };
@@ -151,7 +170,92 @@ public class TestTrigger : MonoBehaviour
         
         
     }
+
     
+     private void ShowEffect()
+    {
+        //第一个座位出现事件
+        transform.DOScale(Vector3.one,  seatEffect1Time).onComplete = () =>
+        {
+            sequenceEventList[0].ShowEffect();
+            //第二个座位出现
+            transform.DOScale(Vector3.one, seatEffect2Time).onComplete = () =>
+            {
+                sequenceEventList[1].ShowEffect();
+                //第三个座位出现
+                transform.DOScale(Vector3.one, seatEffect3Time).onComplete = () =>
+                {
+                    sequenceEventList[2].ShowEffect();
+                    
+                    //第四个座位出现
+                    transform.DOScale(Vector3.one, seatEffect4Time ).onComplete = () =>
+                    {
+                        sequenceEventList[3].ShowEffect();
+                    };
+                };
+            };
+        };
+        
+    }
+
+    /// <summary>
+    /// 显示装饰
+    /// </summary>
+    private void ShowDecorateEffect()
+    {
+        //第一个座位出现事件
+        transform.DOScale(Vector3.one, decorateEffect1Time).onComplete = () =>
+        {
+            sequenceEventList[4].ShowEffect();
+            //第二个座位出现
+            transform.DOScale(Vector3.one, decorateEffect2Time).onComplete = () =>
+            {
+                sequenceEventList[5].ShowEffect();
+                //第三个座位出现
+                transform.DOScale(Vector3.one, decorateEffect3Time).onComplete = () =>
+                {
+                    sequenceEventList[6].ShowEffect();
+                    
+                    //第四个座位出现
+                    transform.DOScale(Vector3.one, decorateEffect4Time).onComplete = () =>
+                    {
+                        sequenceEventList[7].ShowEffect();
+                        
+                        //第四个座位出现
+                        transform.DOScale(Vector3.one, decorateEffect5Time).onComplete = () =>
+                        {
+                            sequenceEventList[8].ShowEffect();
+                        
+                            //第四个座位出现
+                            transform.DOScale(Vector3.one, decorateEffect6Time).onComplete = () =>
+                            {
+                                sequenceEventList[9].ShowEffect();
+                                //第四个座位出现
+                                transform.DOScale(Vector3.one, decorateEffect7Time).onComplete = () =>
+                                {
+                                    sequenceEventList[10].ShowEffect();
+                                    //第四个座位出现
+                                    transform.DOScale(Vector3.one, decorateEffect8Time).onComplete = () =>
+                                    {
+                                        sequenceEventList[11].ShowEffect();
+                                        //第四个座位出现
+                                        transform.DOScale(Vector3.one, decorateEffect9Time).onComplete = () =>
+                                        {
+                                            sequenceEventList[12].ShowEffect();
+                        
+                        
+                                        };
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+        };
+        
+        
+    }
     // 开始接触
     void OnTriggerEnter(Collider collider) {
         //TriggerEnter?.Invoke(collider.transform.name);
@@ -178,9 +282,11 @@ public class TestTrigger : MonoBehaviour
             durTime = 0;
             if (id == 0)
             {
+                ShowEffect();
                 Show();
             }
             id++;
         }
+        
     }
 }

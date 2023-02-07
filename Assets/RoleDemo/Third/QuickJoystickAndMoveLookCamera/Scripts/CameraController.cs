@@ -55,7 +55,7 @@ public class CameraController : MonoBehaviour, IDragHandler,IPointerDownHandler,
         {
             cameraCC = cameraTransform.GetComponent<CharacterController>();
         }
-        cameraCC.radius = 0.5f;
+        cameraCC.radius = 0.2f;
         cameraCC.height = 0.5f;
 
         //major parameter
