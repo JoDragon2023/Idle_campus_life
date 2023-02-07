@@ -9,8 +9,17 @@ public class TestTrigger : MonoBehaviour
 {
     public ClassRoom classRoom;
     public Action<string> TriggerEnter;
-    private float idleTime = 3;
-    private float durTime;
+    private float durOneTime;
+    private float durTwoTime;
+    private float durThreeTime;
+
+    private float oneTime = 1;
+    private float twoTime = 2;
+    private float threeTime = 3;
+    
+    private bool oneEvent = false;
+    private bool twoEvent = false;
+    private bool threeEvent = false;
     
     private float idleEffectTime = 2.5f;
     private float durEffectTime;
@@ -22,7 +31,7 @@ public class TestTrigger : MonoBehaviour
     private bool isCreate = false;
     private bool isUpdate = false;
     private bool isEffect = false;
-
+    private Sequence clickTween;
     private  List<TestSequence> sequenceEventList = new List<TestSequence>();
 
     private float seat1Time = 0.8f;
@@ -56,12 +65,13 @@ public class TestTrigger : MonoBehaviour
     private float decorateEffect8Time = 0.13f;
     private float decorateEffect9Time = 0.13f;
 
-    
-    
+
+    private PlayAnimType currPlayType = PlayAnimType.None;
     
     private void Start()
     {
         roleAnimator = transform.GetComponent<RoleAnimator>();
+        classRoom.classroom.transform.DOLocalMoveY(-2f, 0.2f);
         isEffect = false;
         for (int i = 0; i < classRoom.classRoomList.Count ; i++)
         {
@@ -82,6 +92,8 @@ public class TestTrigger : MonoBehaviour
         }
        
     }
+
+    #region 房间 物品显示 处理
 
     private void Show()
     {
@@ -258,37 +270,176 @@ public class TestTrigger : MonoBehaviour
         
         
     }
+
+    #endregion
+
+
+    #region 阶梯教室
+
+    private void PlayClassroom()
+    {
+        classRoom.classroom.transform.DOScale(new Vector3(0.3f, 0.3f, 0.3f), 0.1f).onComplete+= () =>
+        {
+            classRoom.classroom.SetActive(true);
+            
+            if (clickTween != null)
+                return;
+        
+            clickTween = DOTween.Sequence();
+        
+            Vector3 v3Scale1 = new Vector3(0.5f,0.5f,0.5f);
+            Vector3 v3Scale2 = new Vector3(1f,1.4f,1.4f);
+            Vector3 v3 = Vector3.one;
+        
+            float v3Scale1Time = 0.05f;//第一步时间
+            float v3Scale2Time = 0.6f;//第二步时间
+            float v3Time = 0.3f;//第三步时间
+            clickTween.Append(classRoom.classroom.transform.DOScale(v3Scale1, v3Scale1Time));
+            clickTween.Append(classRoom.classroom.transform.DOScale(v3, v3Time));
+            clickTween.AppendCallback(() =>
+            {
+                clickTween = null;
+            });
+            
+            
+            classRoom.classroom.transform.DOLocalMoveY(2f, 0.6f).onComplete += () =>
+            {
+                classRoom.classroom.transform.DOLocalMoveY(0f, 0.1f).onComplete += () =>
+                {
+                    
+                };
+            };
+            
+        };
+        
+    }
+    #endregion
+    
+    private void TriggerEvent(PlayAnimType playAnimType, Collider collider)
+    {
+        if (collider.name == "Cube")
+        {
+            switch (playAnimType)
+            {
+                case PlayAnimType.One:
+                    if (!oneEvent)
+                    {
+                        oneEvent = true;
+                        classRoom.numAnim.UpdatePanelInfo(true);
+                    }
+                    break;
+                case PlayAnimType.Two:
+                    if (!twoEvent)
+                    {
+                        twoEvent = true;
+                        transform.DOScale(Vector3.one, 0.2f).onComplete = () =>
+                        {
+                            classRoom.floorOne.SetActive(false);
+                        };
+                        
+                        roleAnimator.moneyEffect.gameObject.SetActive(true);
+                        transform.DOScale(Vector3.one, 4).onComplete = () =>
+                        {
+                            roleAnimator.moneyEffect.gameObject.SetActive(false);
+                        };
+                    }
+                    break;
+                case PlayAnimType.Three:
+                    if (!threeEvent)
+                    {
+                        threeEvent = true;
+                        ShowEffect();
+                        Show();
+                    }
+                    break;
+            }
+            
+        }
+        else  if (collider.name == "ClassRoom")
+        {
+            switch (playAnimType)
+            {
+                case PlayAnimType.One:
+                    if (!oneEvent)
+                    {
+                        oneEvent = true;
+                        classRoom.numAnim.UpdatePanelInfo(false);
+                    }
+                    break;
+                case PlayAnimType.Two:
+                    if (!twoEvent)
+                    {
+                        twoEvent = true;
+                        transform.DOScale(Vector3.one, 0.2f).onComplete = () =>
+                        {
+                            classRoom.floorTwo.SetActive(false);
+                        };
+                        
+                        roleAnimator.moneyEffect.gameObject.SetActive(true);
+                        transform.DOScale(Vector3.one, 4).onComplete = () =>
+                        {
+                            roleAnimator.moneyEffect.gameObject.SetActive(false);
+                        };
+                    }
+                    break;
+                case PlayAnimType.Three:
+                    if (!threeEvent)
+                    {
+                        threeEvent = true;
+                        PlayClassroom();
+                    }
+                    break;
+            }
+        }
+    }
+    
+    
     // 开始接触
     void OnTriggerEnter(Collider collider) {
-        //TriggerEnter?.Invoke(collider.transform.name);
-        //Debug.Log("开始接触");
         
-        if (collider.name == "Role") return;
-        classRoom.doorAnim.OpenAnim();
-        durTime = 0;
+        oneEvent = false;
+        twoEvent = false;
+        threeEvent = false;
+        durOneTime = 0;
+        durTwoTime = 0;
+        durThreeTime = 0;
+        
+        if (collider.name == "Cube")
+        {
+            classRoom.doorAnim.OpenAnim();
+        }
     }
     
     // 接触结束
     void OnTriggerExit(Collider collider) {
-        //Debug.Log("接触结束");
-        durTime = 0;
+        durOneTime = 0;
+        durTwoTime = 0;
+        durThreeTime = 0;
     }
     
     // 接触持续中
     void OnTriggerStay(Collider collider) {
 
-        durTime += Time.deltaTime;
-        if (durTime > idleTime)
+        durOneTime += Time.deltaTime;
+        durTwoTime += Time.deltaTime;
+        durThreeTime += Time.deltaTime;
+        
+        if (durOneTime > oneTime)
         { 
-            //Debug.Log("接触持续 3 秒");
-            durTime = 0;
-            if (id == 0)
-            {
-                roleAnimator.moneyEffect.gameObject.SetActive(true);
-                ShowEffect();
-                Show();
-            }
-            id++;
+            durOneTime = 0;
+            TriggerEvent(PlayAnimType.One, collider);
+        }
+        
+        if (durTwoTime > twoTime)
+        { 
+            durTwoTime = 0;
+            TriggerEvent(PlayAnimType.Two, collider);
+        }
+        
+        if (durThreeTime > threeTime)
+        { 
+            durThreeTime = 0;
+            TriggerEvent(PlayAnimType.Three, collider);
         }
         
     }

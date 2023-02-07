@@ -6,5 +6,8 @@ public class ClassRoom : MonoBehaviour
 {
     public List<GameObject> classRoomList;
     public DoorAnim doorAnim;
-    
+    public GameObject classroom;
+    public NumAnim numAnim;
+    public GameObject floorOne;
+    public GameObject floorTwo;
 }
