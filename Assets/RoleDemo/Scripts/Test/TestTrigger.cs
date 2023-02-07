@@ -301,10 +301,9 @@ public class TestTrigger : MonoBehaviour
                 clickTween = null;
             });
             
-            
             classRoom.classroom.transform.DOLocalMoveY(2f, 0.6f).onComplete += () =>
             {
-                classRoom.classroom.transform.DOLocalMoveY(0f, 0.1f).onComplete += () =>
+                classRoom.classroom.transform.DOLocalMoveY(0.55f, 0.1f).onComplete += () =>
                 {
                     
                 };
