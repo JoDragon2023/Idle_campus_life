@@ -25112,17 +25112,17 @@ PrefabInstance:
     - target: {fileID: 114772575551360930, guid: f65cd4c3224ff4dfc8d1080eb82ed6c1,
         type: 3}
       propertyPath: panSpeed
-      value: 0.73
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 114772575551360930, guid: f65cd4c3224ff4dfc8d1080eb82ed6c1,
         type: 3}
       propertyPath: tiltSpeed
-      value: 2.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114772575551360930, guid: f65cd4c3224ff4dfc8d1080eb82ed6c1,
         type: 3}
       propertyPath: rotationSpeed
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114772575551360930, guid: f65cd4c3224ff4dfc8d1080eb82ed6c1,
         type: 3}
@@ -25137,7 +25137,7 @@ PrefabInstance:
     - target: {fileID: 114772575551360930, guid: f65cd4c3224ff4dfc8d1080eb82ed6c1,
         type: 3}
       propertyPath: zoomSensitivity
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114772575551360930, guid: f65cd4c3224ff4dfc8d1080eb82ed6c1,
         type: 3}

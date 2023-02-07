@@ -562,7 +562,7 @@ namespace CTMobileCameraTools
         
         private void BtnRotate()
         {
-            float delta = screenScaler * 2f * GetTimeSinceLastFrame();
+            float delta = screenScaler * 1f * GetTimeSinceLastFrame();
 
             if (isBtnRotate)
             {
@@ -594,25 +594,19 @@ namespace CTMobileCameraTools
                 accumulatedRotation = 0f;
         }
 
-
         //ROTATE MOTION
         private void Rotate()
         {
-            if (Input.touchCount == 2 && Input.GetTouch(0).phase == TouchPhase.Moved &&
-                Input.GetTouch(1).phase == TouchPhase.Moved)
+            if (Input.touchCount == 2 && Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Moved)
             {
                 //CHECK IF MOVING VERTICALLY
-                if (Mathf.Abs(Input.GetTouch(0).deltaPosition.y) < Mathf.Abs(Input.GetTouch(0).deltaPosition.x) &&
-                    Mathf.Abs(Input.GetTouch(1).deltaPosition.y) < Mathf.Abs(Input.GetTouch(1).deltaPosition.x))
+                if (Mathf.Abs(Input.GetTouch(0).deltaPosition.y) < Mathf.Abs(Input.GetTouch(0).deltaPosition.x) && Mathf.Abs(Input.GetTouch(1).deltaPosition.y) < Mathf.Abs(Input.GetTouch(1).deltaPosition.x))
                 {
                     return;
                 }
 
                 //CHECK IF FINGERS ARE IN OPPOSITE REGIONS OF THE SCREEN
-                if ((Input.GetTouch(0).position.x < Screen.width / 2 &&
-                     Input.GetTouch(1).position.x < Screen.width / 2) ||
-                    (Input.GetTouch(0).position.x > Screen.width / 2 &&
-                     Input.GetTouch(1).position.x > Screen.width / 2))
+                if ((Input.GetTouch(0).position.x < Screen.width / 2 && Input.GetTouch(1).position.x < Screen.width / 2) || (Input.GetTouch(0).position.x > Screen.width / 2 && Input.GetTouch(1).position.x > Screen.width / 2))
                 {
                     return;
                 }
@@ -620,44 +614,28 @@ namespace CTMobileCameraTools
                 //CHECK IF FINGERS ARE MOVING IN OPPOSITE DIRECTIONS
                 if (Input.GetTouch(0).deltaPosition.y * Input.GetTouch(1).deltaPosition.y < 0 && canControl)
                 {
+
                     //GET DELTA MOVEMENT
-                    float delta = screenScaler * 5f * GetTimeSinceLastFrame();
+                    float delta = screenScaler * Mathf.Max(Mathf.Abs(Input.GetTouch(0).deltaPosition.y), Mathf.Abs(Input.GetTouch(1).deltaPosition.y)) * GetTimeSinceLastFrame();
 
                     //SET SIGN (ROTATE LEFT OR RIGHT)
-                    // if ((Input.GetTouch(0).deltaPosition.y > 0 && Input.GetTouch(0).position.x < Screen.width / 2) || (Input.GetTouch(0).deltaPosition.y < 0 && Input.GetTouch(0).position.x > Screen.width / 2))
-                    //     delta *= -1;
-
-                    if (Input.GetTouch(0).position.y < Screen.height / 2)
-                    {
+                    if ((Input.GetTouch(0).deltaPosition.y > 0 && Input.GetTouch(0).position.x < Screen.width / 2) || (Input.GetTouch(0).deltaPosition.y < 0 && Input.GetTouch(0).position.x > Screen.width / 2))
                         delta *= -1;
-                    }
 
                     accumulatedRotation = rotationSpeed * delta;
                 }
+
             }
 #if UNITY_EDITOR
 
             if (enableEditorEmulation && isMouseDown && Input.GetKey(editorRotateKey) && canControl)
             {
-                float mouseDeltaTest = 0;
+                float delta = screenScaler * mouseDelta.y * GetTimeSinceLastFrame();
 
-                if (mouseDelta.y > 5 || mouseDelta.y == 0)
-                {
-                    mouseDeltaTest = 5;
-                }
-                else if (mouseDelta.y > -5 || mouseDelta.y < 0)
-                {
-                    mouseDeltaTest = -5;
-                    ;
-                }
-
-                float delta = screenScaler * mouseDeltaTest * GetTimeSinceLastFrame();
-
-                //Debug.Log("  delta  " + delta   + "  mouseDeltaTest   " + mouseDeltaTest);
                 accumulatedRotation = rotationSpeed * delta;
             }
 #endif
-
+            
             if (GuideMager.Instance.isGuide)
             {
                 if (GuideMager.Instance.isRotate)
@@ -669,7 +647,6 @@ namespace CTMobileCameraTools
                     }
                 }
             }
-
             transform.localEulerAngles += new Vector3(0, accumulatedRotation, 0);
 
             //DECREASE THE INERTIA OVER TIME
@@ -678,6 +655,7 @@ namespace CTMobileCameraTools
             //CLAMP
             if (Mathf.Abs(accumulatedRotation) < 0.02f)
                 accumulatedRotation = 0f;
+
         }
 
         //TILT MOTION
