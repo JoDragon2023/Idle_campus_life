@@ -37,6 +37,7 @@ Transform:
   - {fileID: 405115588884492621}
   - {fileID: 7902869990014384377}
   - {fileID: 4630305968072916228}
+  - {fileID: 6544627026327901080}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -180,6 +181,7 @@ MonoBehaviour:
   emojiCoolTwo: {fileID: 8005783733374586438}
   effect: {fileID: 7902869990014085985}
   di: {fileID: 5909028251616258958}
+  book: {fileID: 8329161952743379660}
 --- !u!1001 &1318213786169202162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -702,4 +704,90 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2049920532993730960, guid: 57244c2ebfc56884bb89315c157e0c76,
     type: 3}
   m_PrefabInstance: {fileID: 8316044315918493654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8858283478901361747
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5474294846557997849}
+    m_Modifications:
+    - target: {fileID: 682806953647759007, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_Name
+      value: Book
+      objectReference: {fileID: 0}
+    - target: {fileID: 682806953647759007, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.036
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.028
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f9934770ae9fb0442bca56ea4b8c3c0c, type: 3}
+--- !u!1 &8329161952743379660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 682806953647759007, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8858283478901361747}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6544627026327901080 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2323257620037803979, guid: f9934770ae9fb0442bca56ea4b8c3c0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8858283478901361747}
   m_PrefabAsset: {fileID: 0}

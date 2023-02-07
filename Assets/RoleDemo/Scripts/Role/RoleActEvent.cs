@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -59,7 +60,7 @@ public class RoleActEvent : MonoBehaviour
     /// </summary>
     public Action BtnLaboratoryAct;
 
-
+    
     private void Awake()
     {
         Instance = this;
@@ -68,7 +69,7 @@ public class RoleActEvent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BtnSleep.onClick.AddListener(()=>{ BtnSleepAct?.Invoke(); });
+        BtnSleep.onClick.AddListener(() => {  });
 
         BtnRestArea.onClick.AddListener(() => { BtnRestAreaAct?.Invoke(); });
             

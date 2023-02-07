@@ -24,6 +24,46 @@ public enum GuideStep
     Complete,
 }
 
+public enum BookType
+{
+    None,
+    One,
+    Two,
+    Three,
+    Four
+}
+
+public enum BookTypeName
+{ 
+    CurrState,
+    ToBookOne,
+    ToBookTwo,
+    ToBookThree
+}
+
+public enum BookAnimName
+{ 
+    Note01,
+    Note02,
+    Note03
+}
+
+public enum RoleClassTypeName
+{ 
+    CurrState,
+    ToStudy01,
+    ToStudy02,
+    ToStudy03,
+    ToTakeout
+}
+
+public enum RoleClassAnimName
+{ 
+    Study01,
+    Study02,
+    Study03,
+    Takeout
+}
 
 public enum PlayAnimType
 {

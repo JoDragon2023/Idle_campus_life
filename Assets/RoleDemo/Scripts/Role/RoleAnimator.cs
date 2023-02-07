@@ -7,6 +7,7 @@ public class RoleAnimator : MonoBehaviour
     public Animator roleAnimator;
     public Animator nakedOneAnimator;
     public Animator nakedTwoAnimator;
+   
 
     public GameObject role;
     public GameObject nakedOne;
@@ -18,4 +19,6 @@ public class RoleAnimator : MonoBehaviour
     public GameObject effect;
 
     public GameObject di;
+    
+    public GameObject book;
 }
