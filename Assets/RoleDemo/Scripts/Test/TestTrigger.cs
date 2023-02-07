@@ -14,7 +14,7 @@ public class TestTrigger : MonoBehaviour
     
     private float idleEffectTime = 2.5f;
     private float durEffectTime;
-    
+    private RoleAnimator roleAnimator;
     
     private float durupdateTime;
     private int id = 0;
@@ -41,25 +41,27 @@ public class TestTrigger : MonoBehaviour
     private float decorate9Time = 0.1f;
     
     // 烟雾特效显示 效果参数
-    private float seatEffect1Time = 0.6f;
-    private float seatEffect2Time = 0.5f;
-    private float seatEffect3Time = 0.4f;
-    private float seatEffect4Time = 0.3f;
-    
-    private float decorateEffect1Time = 0.2f;
-    private float decorateEffect2Time = 0.1f;
-    private float decorateEffect3Time = 0.1f;
-    private float decorateEffect4Time = 0.1f;
-    private float decorateEffect5Time = 0.1f;
-    private float decorateEffect6Time = 0.1f;
-    private float decorateEffect7Time = 0.1f;
-    private float decorateEffect8Time = 0.1f;
-    private float decorateEffect9Time = 0.1f;
+    private float seatEffect1Time = 0.7f;
+    private float seatEffect2Time = 0.65f;
+    private float seatEffect3Time = 0.6f;
+    private float seatEffect4Time = 0.55f;
+
+    private float decorateEffect1Time = 0.4f;
+    private float decorateEffect2Time = 0.3f;
+    private float decorateEffect3Time = 0.2f;
+    private float decorateEffect4Time = 0.2f;
+    private float decorateEffect5Time = 0.13f;
+    private float decorateEffect6Time = 0.13f;
+    private float decorateEffect7Time = 0.13f;
+    private float decorateEffect8Time = 0.13f;
+    private float decorateEffect9Time = 0.13f;
+
     
     
     
     private void Start()
     {
+        roleAnimator = transform.GetComponent<RoleAnimator>();
         isEffect = false;
         for (int i = 0; i < classRoom.classRoomList.Count ; i++)
         {
@@ -282,6 +284,7 @@ public class TestTrigger : MonoBehaviour
             durTime = 0;
             if (id == 0)
             {
+                roleAnimator.moneyEffect.gameObject.SetActive(true);
                 ShowEffect();
                 Show();
             }
