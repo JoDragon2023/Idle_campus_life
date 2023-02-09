@@ -10,4 +10,5 @@ public class ClassRoom : MonoBehaviour
     public NumAnim numAnim;
     public GameObject floorOne;
     public GameObject floorTwo;
+    public GameObject maxSmokeEffect;
 }

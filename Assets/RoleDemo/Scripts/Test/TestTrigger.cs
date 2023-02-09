@@ -70,6 +70,7 @@ public class TestTrigger : MonoBehaviour
     
     private void Start()
     {
+        
         roleAnimator = transform.GetComponent<RoleAnimator>();
         classRoom.classroom.transform.DOLocalMoveY(-2f, 0.2f);
         isEffect = false;
@@ -303,12 +304,9 @@ public class TestTrigger : MonoBehaviour
             
             classRoom.classroom.transform.DOLocalMoveY(2f, 0.6f).onComplete += () =>
             {
-                classRoom.classroom.transform.DOLocalMoveY(0.55f, 0.1f).onComplete += () =>
-                {
-                    
-                };
+                classRoom.maxSmokeEffect.SetActive(true);
+                classRoom.classroom.transform.DOLocalMoveY(0.55f, 0.1f);
             };
-            
         };
         
     }

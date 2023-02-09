@@ -23157,7 +23157,7 @@ MonoBehaviour:
   piovtY: 1
   distance: 6
   minDistance: 2
-  maxDistance: 8
+  maxDistance: 10
   zoomSpeed: 0.2
   xSpeed: 0.3
   ySpeed: 0.3
@@ -26680,6 +26680,7 @@ MonoBehaviour:
   numAnim: {fileID: 314847012}
   floorOne: {fileID: 70894861}
   floorTwo: {fileID: 793996722}
+  maxSmokeEffect: {fileID: 1497363051}
 --- !u!4 &1114481970
 Transform:
   m_ObjectHideFlags: 0
@@ -34575,6 +34576,101 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493609239}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1497363050
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1346358066003656936, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003656936, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003656936, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003656936, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -21.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003656936, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003656936, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003656936, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003656936, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003656936, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003656936, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003656936, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003859348, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_Name
+      value: SmokeExplosion_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066003859348, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066018895920, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.8396226
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066018895920, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8396226
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346358066018895920, guid: 33c3f2f961e4a834a89760f342be1328,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8396226
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 33c3f2f961e4a834a89760f342be1328, type: 3}
+--- !u!1 &1497363051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1346358066003859348, guid: 33c3f2f961e4a834a89760f342be1328,
+    type: 3}
+  m_PrefabInstance: {fileID: 1497363050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1497824258
 PrefabInstance:
   m_ObjectHideFlags: 0
